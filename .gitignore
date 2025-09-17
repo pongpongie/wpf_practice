@@ -1,0 +1,38 @@
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build Results
+[Dd]ebug/
+[Rr]elease/
+[Bb]in/
+[Oo]bj/
+*.pdb
+*.intellisense.xml
+*.buildlog
+*.log
+
+# NuGet Packages
+packages/
+*.nupkg
+.nuget/
+
+# VSIX (Visual Studio Extension)
+*.vsix
+*.vsixmanifest
+
+# Temporary Files
+[Tt]emp/
+*.tmp
+*.bak
+
+# Resharper
+*.ReSharper*
+_ReSharper.*/
+[Tt]est[Rr]esult.xml
+
+# Code Analysis
+*.Fxcop
