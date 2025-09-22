@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Page_Navigation_App.model
 {
-    class PageModel
+    public class PageModel
     {
         public int CustomerCount { get; set; }
         public string ProductStatus { get; set; }
@@ -14,7 +14,5 @@ namespace Page_Navigation_App.model
         public decimal TransactionValue { get; set; }
         public TimeOnly ShipmentDelivery { get; set; }
         public bool LocationStatus { get; set; }
-
-
     }
 }
