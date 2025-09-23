@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Page_Navigation_App.viewmodel
 {
-    class TransactionsVM :utilities.ViewModelBase
+    class TransactionsVM : utilities.ViewModelBase
     {
         private readonly PageModel _pageModel;
         public decimal TransactionAmount
