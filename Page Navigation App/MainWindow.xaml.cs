@@ -20,5 +20,10 @@ namespace Page_Navigation_App
         {
             InitializeComponent();
         }
+
+        private void Btn_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
