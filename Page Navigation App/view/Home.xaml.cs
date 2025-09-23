@@ -18,7 +18,7 @@ namespace Page_Navigation_App.view
     /// <summary>
     /// Home.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class Home : Page
+    public partial class Home : UserControl
     {
         public Home()
         {

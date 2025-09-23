@@ -18,7 +18,7 @@ namespace Page_Navigation_App.view
     /// <summary>
     /// Customers.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class Customers : Page
+    public partial class Customers : UserControl
     {
         public Customers()
         {

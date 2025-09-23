@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Page_Navigation_App.view
 {
     /// <summary>
-    /// Order.xaml에 대한 상호 작용 논리
+    /// Orders.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class Order : Page
+    public partial class Orders : UserControl
     {
-        public Order()
+        public Orders()
         {
             InitializeComponent();
         }

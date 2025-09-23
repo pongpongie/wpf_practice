@@ -32,8 +32,8 @@
                    VerticalAlignment="Top"
                    FontFamily="/fonts/#Rubik Medium"
                    FontSize="12"
-                   Foreground="#DBDBDB"
-                   Text="Customer ID :" />
+                   Foreground="#CED565"
+                   Text="{Binding CustomerID}" />
 
 
     </Grid>

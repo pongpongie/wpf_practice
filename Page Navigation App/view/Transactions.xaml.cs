@@ -18,7 +18,7 @@ namespace Page_Navigation_App.view
     /// <summary>
     /// Transactions.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class Transactions : Page
+    public partial class Transactions : UserControl
     {
         public Transactions()
         {
