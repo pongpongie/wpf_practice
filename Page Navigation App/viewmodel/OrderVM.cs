@@ -11,7 +11,7 @@ namespace Page_Navigation_App.viewmodel
     {
         private readonly PageModel _pageModel;
 
-        public DateOnly DisplayOrdeDate
+        public DateOnly DisplayOrderDate
         {
             get { return _pageModel.OrderDate; }
             set { _pageModel.OrderDate = value; OnPropertyChanged(); }
@@ -20,7 +20,7 @@ namespace Page_Navigation_App.viewmodel
         public OrderVM()
         {
             _pageModel = new PageModel();
-            DisplayOrdeDate = DateOnly.FromDateTime(DateTime.Now);
+            DisplayOrderDate = DateOnly.FromDateTime(DateTime.Now);
         }
     }
 }

@@ -34,7 +34,7 @@
                        FontFamily="/fonts/#Rubik Medium"
                        FontSize="12"
                        Foreground="#CED565"
-                       Text="{Binding DisplayOrdeDate}" />
+                       Text="{Binding DisplayOrderDate}" />
         </Grid>
     </Grid>
 </UserControl>
