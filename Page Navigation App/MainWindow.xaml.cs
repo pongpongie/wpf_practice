@@ -1,4 +1,8 @@
-﻿using System.Text;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -21,9 +25,9 @@ namespace Page_Navigation_App
             InitializeComponent();
         }
 
-        private void Btn_Checked(object sender, RoutedEventArgs e)
+        private void CloseApp_Click(object sender, RoutedEventArgs e)
         {
-
+            Close();
         }
     }
 }
