@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
 
 public class ViewModelBase : INotifyPropertyChanged
 {
