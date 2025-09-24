@@ -4,6 +4,14 @@
              xmlns:local="clr-namespace:Page_Navigation_App"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="styles/Button.xaml" />
+                <ResourceDictionary Source="styles/Images.xaml" />
+                <ResourceDictionary Source="styles/Page.xaml" />
+                <ResourceDictionary Source="styles/Text.xaml" />
+                <ResourceDictionary Source="utilities/DataTemplate.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

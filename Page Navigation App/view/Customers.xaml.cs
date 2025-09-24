@@ -13,21 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Page_Navigation_App
+namespace Page_Navigation_App.view
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Customers.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Customers : UserControl
     {
-        public MainWindow()
+        public Customers()
         {
             InitializeComponent();
-        }
-
-        private void CloseApp_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
         }
     }
 }
