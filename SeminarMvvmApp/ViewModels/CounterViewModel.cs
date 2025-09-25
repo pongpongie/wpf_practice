@@ -1,21 +1,43 @@
-﻿using SeminarMvvmApp.Utils;
+﻿using SeminarMvvmApp.Models;
+using SeminarMvvmApp.Utils;
 
 namespace SeminarMvvmApp.ViewModels
 {
     public class CounterViewModel : ViewModelBase
     {
-        private int _count;
-        public int Count
-        {
-            get => _count;
-            set => SetProperty(ref _count, value);
-        }
-        public RelayCommand IncrementCommand { get; }
-        public RelayCommand DecrementCommand { get; }
+        private readonly CounterModel _model;
         public CounterViewModel()
         {
-            IncrementCommand = new RelayCommand(_ => Count++);
-            DecrementCommand = new RelayCommand(_ => Count--);
+            _model = new CounterModel();
+            IncrementCommand = new RelayCommand(_ => Increment());
+            DecrementCommand = new RelayCommand(_ => Decrement());
+        }
+
+        public int Count
+        {
+            get => _model.Count;
+            set
+            {
+                if (_model.Count != value)
+                {
+                    _model.Count = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public RelayCommand IncrementCommand { get; }
+        public RelayCommand DecrementCommand { get; }
+
+        private void Increment()
+        {
+            _model.Increment();
+            OnPropertyChanged(nameof(Count));
+        }
+        private void Decrement()
+        {
+            _model.Decrement();
+            OnPropertyChanged(nameof(Count));
         }
     }
 }
