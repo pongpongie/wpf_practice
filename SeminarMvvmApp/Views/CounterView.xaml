@@ -7,8 +7,10 @@
              d:DesignWidth="300"
              mc:Ignorable="d">
     <Grid>
-        <TextBlock HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
+        <TextBlock Width="26"
+                   Margin="0,10,0,0"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Top"
                    FontSize="24"
                    Text="{Binding Count}" />
         <StackPanel HorizontalAlignment="Center"

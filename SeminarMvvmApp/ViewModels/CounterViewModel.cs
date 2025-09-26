@@ -1,5 +1,7 @@
-﻿using SeminarMvvmApp.Models;
+﻿using SeminarMvvmApp.Messages;
+using SeminarMvvmApp.Models;
 using SeminarMvvmApp.Utils;
+using System.Diagnostics;
 
 namespace SeminarMvvmApp.ViewModels
 {
@@ -9,6 +11,7 @@ namespace SeminarMvvmApp.ViewModels
         public CounterViewModel(CounterModel model)
         {
             _model = model;
+            
             IncrementCommand = new RelayCommand(_ => Increment());
             DecrementCommand = new RelayCommand(_ => Decrement());
         }
@@ -33,6 +36,11 @@ namespace SeminarMvvmApp.ViewModels
         {
             _model.Increment();
             OnPropertyChanged(nameof(Count));
+            if (_model.Count >= 10)
+            {
+
+                Messenger.Default.Send(new NotificationMessage($"Count가 10 이상입니다: {_model.Count}"));
+            }
         }
         private void Decrement()
         {

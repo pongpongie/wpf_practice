@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using SeminarMvvmApp.Messages;
+using System.Windows;
 
 namespace SeminarMvvmApp
 {
@@ -7,6 +8,7 @@ namespace SeminarMvvmApp
         public MainWindow()
         {
             InitializeComponent();
+            
         }
     }
 }

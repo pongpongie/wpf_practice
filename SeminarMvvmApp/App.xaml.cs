@@ -13,6 +13,7 @@ namespace SeminarMvvmApp
             base.OnStartup(e);
             // Model과 ViewModel 등록
             Container.Register(() => new CounterModel());
+            Container.Register(() => new LogViewModel());
             Container.Register(() => new CounterViewModel(Container.Resolve<CounterModel>()));
         }
     }
