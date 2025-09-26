@@ -1,4 +1,6 @@
 ﻿using System.Windows.Controls;
+using SeminarMvvmApp.ViewModels;
+using SeminarMvvmApp;
 
 namespace SeminarMvvmApp.Views
 {
@@ -7,6 +9,7 @@ namespace SeminarMvvmApp.Views
         public CounterView()
         {
             InitializeComponent();
+            DataContext = App.Container.Resolve<CounterViewModel>(); // IoC에서 주입
         }
     }
 }

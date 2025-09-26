@@ -6,9 +6,9 @@ namespace SeminarMvvmApp.ViewModels
     public class CounterViewModel : ViewModelBase
     {
         private readonly CounterModel _model;
-        public CounterViewModel()
+        public CounterViewModel(CounterModel model)
         {
-            _model = new CounterModel();
+            _model = model;
             IncrementCommand = new RelayCommand(_ => Increment());
             DecrementCommand = new RelayCommand(_ => Decrement());
         }
