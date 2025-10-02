@@ -1,4 +1,4 @@
-﻿using DevExpress.Mvvm;
+using DevExpress.Mvvm;
 using DevExpress.Mvvm.DataAnnotations;
 using SeminarMvvmApp.Messages;
 using SeminarMvvmApp.Models;
