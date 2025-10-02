@@ -1,49 +1,39 @@
-﻿using DevExpress.Mvvm;
+using DevExpress.Mvvm;
+using DevExpress.Mvvm.DataAnnotations;
 using SeminarMvvmApp.Messages;
 using SeminarMvvmApp.Models;
+using SeminarMvvmApp.Utils;
+using System.Diagnostics;
 
 namespace SeminarMvvmApp.ViewModels
 {
-    public class CounterViewModel : ViewModelBase
+    [POCOViewModel] // [POCOViewModel] 특성을 사용하여 이 클래스가 POCO ViewModel임을 명시한다.
+    public class CounterViewModel
     {
         private readonly CounterModel _model;
         public CounterViewModel(CounterModel model)
         {
             _model = model;
-            IncrementCommand = new DelegateCommand(Increment);
-            DecrementCommand = new DelegateCommand(Decrement);
+            Count = _model.Count;
         }
 
-        public int Count
-        {
-            get => _model.Count;
-            set
-            {
-                if (_model.Count != value)
-                {
-                    _model.Count = value;
-                    RaisePropertyChanged();
-                }
-            }
-        }
+        public virtual int Count { get; set; }
 
-        public DelegateCommand IncrementCommand { get; }
-        public DelegateCommand DecrementCommand { get; }
-
-        private void Increment()
+        public void Increment()
         {
             _model.Increment();
-            RaisePropertyChanged(nameof(Count));
+            Count = _model.Count;
 
-            if (_model.Count >= 10)
+            if (Count >= 10)
             {
-                Messenger.Default.Send(new NotificationMessage($"Count가 10 이상입니다: {_model.Count}"));
+                Messenger.Default.Send(new NotificationMessage($"Count가 10 이상입니다: {Count}"));
             }
         }
-        private void Decrement()
+
+        public void Decrement()
         {
             _model.Decrement();
-            RaisePropertyChanged(nameof(Count));
+            Count = _model.Count;
         }
     }
 }

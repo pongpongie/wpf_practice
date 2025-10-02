@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Autofac" Version="8.4.0" />
     <PackageReference Include="DevExpressMvvm" Version="24.1.6" />
   </ItemGroup>
 
