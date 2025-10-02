@@ -1,6 +1,5 @@
-﻿using System.Windows.Controls;
-using SeminarMvvmApp.ViewModels;
-using SeminarMvvmApp;
+﻿using DevExpress.Mvvm.POCO;
+using System.Windows.Controls;
 
 namespace SeminarMvvmApp.Views
 {
@@ -9,7 +8,7 @@ namespace SeminarMvvmApp.Views
         public CounterView()
         {
             InitializeComponent();
-            DataContext = App.Container.Resolve<CounterViewModel>(); // IoC에서 주입
+            this.DataContext = ViewModelSource.Create(() => new ViewModels.CounterViewModel(new Models.CounterModel()));
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Windows.Controls;
+using DevExpress.Mvvm.POCO;
 using SeminarMvvmApp.ViewModels;
 
 namespace SeminarMvvmApp.Views
@@ -8,7 +9,7 @@ namespace SeminarMvvmApp.Views
         public LogView()
         {
             InitializeComponent();
-            DataContext = new LogViewModel();
+            this.DataContext = ViewModelSource.Create(() => new LogViewModel());
         }
     }
 }

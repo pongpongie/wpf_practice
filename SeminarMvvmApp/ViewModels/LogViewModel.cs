@@ -1,11 +1,12 @@
-﻿using SeminarMvvmApp.Messages;
-using SeminarMvvmApp.Utils;
+﻿using DevExpress.Mvvm;
+using DevExpress.Mvvm.DataAnnotations;
+using SeminarMvvmApp.Messages;
 using System.Collections.ObjectModel;
-using System.Threading.Tasks;
 
 namespace SeminarMvvmApp.ViewModels
 {
-    public class LogViewModel : ViewModelBase
+    [POCOViewModel]
+    public class LogViewModel
     {
         public ObservableCollection<string> Logs { get; } = new();
         public LogViewModel()
