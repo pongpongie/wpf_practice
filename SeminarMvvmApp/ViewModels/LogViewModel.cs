@@ -1,5 +1,6 @@
 ﻿using DevExpress.Mvvm;
 using DevExpress.Mvvm.DataAnnotations;
+using DevExpress.Mvvm.POCO;
 using SeminarMvvmApp.Messages;
 using System.Collections.ObjectModel;
 
@@ -13,9 +14,15 @@ namespace SeminarMvvmApp.ViewModels
         {
             Messenger.Default.Register<NotificationMessage>(OnNotificationReceived);
         }
+
         private void OnNotificationReceived(NotificationMessage msg)
         {
             Logs.Add(msg.Content);
+        }
+
+        public static LogViewModel Create()
+        {
+            return ViewModelSource.Create(() => new LogViewModel());
         }
     }
 }

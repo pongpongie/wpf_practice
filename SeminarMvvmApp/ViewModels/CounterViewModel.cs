@@ -2,6 +2,7 @@ using DevExpress.Mvvm;
 using DevExpress.Mvvm.DataAnnotations;
 using SeminarMvvmApp.Messages;
 using SeminarMvvmApp.Models;
+using DevExpress.Mvvm.POCO;
 using SeminarMvvmApp.Utils;
 using System.Diagnostics;
 
@@ -15,6 +16,11 @@ namespace SeminarMvvmApp.ViewModels
         {
             _model = model;
             Count = _model.Count;
+        }
+
+        public static CounterViewModel Create ()
+        {
+            return ViewModelSource.Create(() => new CounterViewModel(new CounterModel()));
         }
 
         public virtual int Count { get; set; }
