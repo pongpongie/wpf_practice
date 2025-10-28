@@ -7,8 +7,8 @@
         xmlns:views="clr-namespace:NotVineAppGUI.RegionPageView.Views;assembly=NotVineAppGUI.RegionPageView"
         xmlns:vm="clr-namespace:NotVineAppGUI.RegionPageView.ViewModels;assembly=NotVineAppGUI.RegionPageView"
         Title="MainWindow"
-        Width="800"
-        Height="450"
+        Width="1280"
+        Height="720"
         mc:Ignorable="d">
 
     <Window.Resources>
