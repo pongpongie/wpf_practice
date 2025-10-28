@@ -36,3 +36,5 @@ _ReSharper.*/
 
 # Code Analysis
 *.Fxcop
+/NotVineApp project/NotVineApp/.cr/personal/FavoritesList
+/Practice/.cr/personal/FavoritesList
