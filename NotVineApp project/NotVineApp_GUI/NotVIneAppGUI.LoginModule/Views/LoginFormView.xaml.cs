@@ -1,16 +1,21 @@
 ﻿using System.Windows.Controls;
+using NotVineAppGUI.LoginModule.ViewModels;
+using NotVineApp.Common.Services;
 
 namespace NotVineAppGUI.LoginModule.Views
 {
-    /// <summary>
-    /// LoginFormView.xaml에 대한 상호 작용 논리
-    /// </summary>
     public partial class LoginFormView : UserControl
     {
-        public LoginFormView()
+        // DI용 생성자
+        public LoginFormView(LoginFormViewModel viewModel)
         {
             InitializeComponent();
-            this.DataContext = new ViewModels.LoginFormViewModel();
+            this.DataContext = viewModel;
+        }
+
+        // XAML용 기본 생성자
+        public LoginFormView() : this(ServiceLocator.Instance.Resolve<LoginFormViewModel>())
+        {
         }
     }
 }

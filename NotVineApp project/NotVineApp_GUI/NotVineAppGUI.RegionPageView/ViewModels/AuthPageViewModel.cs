@@ -1,5 +1,6 @@
 ﻿using NotVineAppGUI.LoginModule.ViewModels;
 using NotVineApp.Common.Utils;
+using NotVineApp.Common.Services;
 using System.Windows.Input;
 
 namespace NotVineAppGUI.RegionPageView.ViewModels
@@ -10,7 +11,8 @@ namespace NotVineAppGUI.RegionPageView.ViewModels
 
         public AuthPageViewModel()
         {
-            CurrentViewModel = new LoginFormViewModel();
+            // ServiceLocator를 통해 의존성 주입된 ViewModel 가져오기
+            CurrentViewModel = ServiceLocator.Instance.Resolve<LoginFormViewModel>();
         }
     }
 }

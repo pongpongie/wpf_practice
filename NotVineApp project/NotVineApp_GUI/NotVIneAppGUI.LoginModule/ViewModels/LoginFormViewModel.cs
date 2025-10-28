@@ -1,10 +1,11 @@
 ﻿using NotVineApp.Common.Utils;
-using System.Windows;
+using NotVineApp.Common.Services;
 
 namespace NotVineAppGUI.LoginModule.ViewModels
 {
     public class LoginFormViewModel : ViewModelBase
     {
+        private readonly INavigationService _navigationService;
         private string _textBoxText = "Login Form";
 
         public string TextBoxText
@@ -20,8 +21,9 @@ namespace NotVineAppGUI.LoginModule.ViewModels
             }
         }
 
-        public LoginFormViewModel()
+        public LoginFormViewModel(INavigationService navigationService)
         {
+            _navigationService = navigationService;
             ClickCommand = new RelayCommand(OnButtonClick);
         }
 
@@ -29,8 +31,8 @@ namespace NotVineAppGUI.LoginModule.ViewModels
 
         private void OnButtonClick(object parameter)
         {
-            TextBoxText = "버튼 클릭으로 텍스트 변경됨";
+            // 문자열 키로 네비게이션 (순환 참조 없음)
+            _navigationService.NavigateTo("HomePage");
         }
-
     }
 }

@@ -1,26 +1,23 @@
-﻿using NotVineAppGUI.RegionPageView.ViewModels;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows;
+using NotVineApp.Common.Services;
+using NotVineAppGUI.LoginModule.Views;
 
 namespace NotVineApp
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        private readonly INavigationService _navigationService;
+
+        public MainWindow(INavigationService navigationService)
         {
             InitializeComponent();
-            this.DataContext = new MainPageViewModel();
+            _navigationService = navigationService;
+
+            // 네비게이션 초기화
+            _navigationService.Initialize(MainContentControl);
+
+            // 시작 페이지
+            _navigationService.NavigateTo<LoginFormView>();
         }
     }
 }
