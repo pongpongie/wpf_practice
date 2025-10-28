@@ -11,10 +11,23 @@
         <DataTemplate DataType="{x:Type vm:LoginFormViewModel}">
             <view:LoginFormView />
         </DataTemplate>
+
+        <Style x:Key="BackgroundGridStyle"
+               TargetType="Grid">
+            <Setter Property="Background"
+                    Value="FloralWhite" />
+            <Setter Property="HorizontalAlignment"
+                    Value="Center" />
+            <Setter Property="VerticalAlignment"
+                    Value="Center" />
+        </Style>
+
     </UserControl.Resources>
 
-    <Grid>
+    <Grid Style="{StaticResource BackgroundGridStyle}">
         <ContentControl x:Name="LoginFormRegion"
+                        Grid.Row="0"
                         Content="{Binding CurrentViewModel}" />
+
     </Grid>
 </UserControl>

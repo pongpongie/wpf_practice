@@ -8,8 +8,6 @@ namespace NotVineAppGUI.RegionPageView.ViewModels
     {
         public Object CurrentViewModel { get; set; }
 
-        public ICommand ShowLoginFormCommand { get; set; }
-
         public AuthPageViewModel()
         {
             CurrentViewModel = new LoginFormViewModel();

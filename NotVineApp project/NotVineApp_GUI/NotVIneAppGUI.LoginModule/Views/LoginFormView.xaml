@@ -7,6 +7,22 @@
              mc:Ignorable="d">
 
     <UserControl.Resources>
+        <Style x:Key="BorderStyle"
+               TargetType="Border">
+            <Setter Property="MinHeight"
+                    Value="400" />
+            <Setter Property="MinWidth"
+                    Value="300" />
+            <Setter Property="BorderBrush"
+                    Value="ForestGreen" />
+            <Setter Property="BorderThickness"
+                    Value="4" />
+            <Setter Property="CornerRadius"
+                    Value="10" />
+            <Setter Property="Background"
+                    Value="DarkSeaGreen" />
+        </Style>
+
         <Style x:Key="TextBlockStyle"
                TargetType="TextBlock">
             <Setter Property="Foreground"
@@ -17,6 +33,41 @@
                     Value="Center" />
             <Setter Property="Margin"
                     Value="5,2" />
+            <Setter Property="FontSize"
+                    Value="20" />
+            <Setter Property="MaxWidth"
+                    Value="240" />
+        </Style>
+
+        <Style x:Key="InputBorderStyle"
+               TargetType="Border">
+            <Setter Property="Background"
+                    Value="White" />
+            <Setter Property="BorderBrush"
+                    Value="ForestGreen" />
+            <Setter Property="BorderThickness"
+                    Value="2" />
+            <Setter Property="CornerRadius"
+                    Value="8" />
+            <Setter Property="Padding"
+                    Value="5,2" />
+            <Setter Property="Width"
+                    Value="250" />
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver"
+                         Value="True">
+                    <Setter Property="BorderBrush"
+                            Value="DarkOliveGreen" />
+                </Trigger>
+                <Trigger Property="IsKeyboardFocusWithin"
+                         Value="True">
+                    <Setter Property="BorderBrush"
+                            Value="DarkGreen" />
+                    <Setter Property="BorderThickness"
+                            Value="3" />
+                </Trigger>
+            </Style.Triggers>
         </Style>
 
         <Style x:Key="LoginInputBoxStyle"
@@ -29,7 +80,10 @@
                     Value="5,2" />
             <Setter Property="Background"
                     Value="Transparent" />
-
+            <Setter Property="BorderThickness"
+                    Value="0" />
+            <Setter Property="FontSize"
+                    Value="20" />
         </Style>
 
         <Style x:Key="LoginInputPasswordBoxStyle"
@@ -42,53 +96,54 @@
                     Value="5,2" />
             <Setter Property="Background"
                     Value="Transparent" />
-
+            <Setter Property="BorderThickness"
+                    Value="0" />
+            <Setter Property="FontSize"
+                    Value="20" />
         </Style>
+
     </UserControl.Resources>
 
-    <Grid Width="200"
-          Height="200"
-          Background="Aquamarine">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+    <Border Style="{StaticResource BorderStyle}">
 
-        <TextBlock Grid.Row="0"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Top"
-                   FontSize="20"
-                   Text="{Binding TextBoxText}" />
-        <TextBlock Grid.Row="1"
-                   Style="{StaticResource TextBlockStyle}"
-                   Text="아이디" />
+        <StackPanel>
 
-        <Grid Grid.Row="2"
-              VerticalAlignment="Center">
-            <TextBox x:Name="IdTextBox"
-                     Style="{StaticResource LoginInputBoxStyle}"
-                     Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" />
-        </Grid>
+            <Grid Height="105"
+                  MaxWidth="240"
+                  HorizontalAlignment="Stretch">
+                <TextBlock VerticalAlignment="Center"
+                           d:Text="로그인하세요 제발"
+                           FontSize="20"
+                           Text="{Binding TextBoxText}"
+                           TextAlignment="Center" />
+            </Grid>
+            <TextBlock Style="{StaticResource TextBlockStyle}"
+                       Text="아이디" />
 
-        <TextBlock Grid.Row="3"
-                   Style="{StaticResource TextBlockStyle}"
-                   Text="비밀번호" />
+            <Border Style="{StaticResource InputBorderStyle}">
+                <TextBox x:Name="IdTextBox"
+                         Style="{StaticResource LoginInputBoxStyle}"
+                         Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" />
+            </Border>
 
-        <Grid Grid.Row="4"
-              VerticalAlignment="Center">
-            <PasswordBox x:Name="PasswordInput"
-                         Style="{StaticResource LoginInputPasswordBoxStyle}" />
-        </Grid>
 
-        <Button Grid.Row="5"
-                Width="100"
-                Height="30"
-                VerticalAlignment="Center"
-                Command="{Binding ClickCommand}"
-                Content="로그인" />
-    </Grid>
+            <TextBlock Margin="0,15,0,0"
+                       Style="{StaticResource TextBlockStyle}"
+                       Text="비밀번호" />
+            <Border Style="{StaticResource InputBorderStyle}">
+                <PasswordBox x:Name="PasswordInput"
+                             Style="{StaticResource LoginInputPasswordBoxStyle}" />
+            </Border>
+
+            <Button Width="100"
+                    Height="30"
+                    Margin="0,30,0,0"
+                    VerticalAlignment="Center"
+                    Command="{Binding ClickCommand}"
+                    Content="로그인" />
+
+        </StackPanel>
+
+    </Border>
+
 </UserControl>
