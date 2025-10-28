@@ -13,6 +13,9 @@
 
     <Window.Resources>
         <DataTemplate DataType="{x:Type vm:MainPageViewModel}" />
+        <DataTemplate DataType="{x:Type vm:HomePageViewModel}">
+            <views:HomePageView />
+        </DataTemplate>
         <DataTemplate DataType="{x:Type vm:AuthPageViewModel}">
             <views:AuthPageView />
         </DataTemplate>

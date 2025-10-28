@@ -25,8 +25,8 @@ namespace NotVineAppGUI.RegionPageView.ViewModels
 
         public MainPageViewModel()
         {
-            // 초기 뷰모델 설정 (예: AuthPageViewModel)
-            CurrentPageViewModel = new AuthPageViewModel();
+            // 초기 뷰모델 설정
+            CurrentPageViewModel = new HomePageViewModel();
         }
     }
 }

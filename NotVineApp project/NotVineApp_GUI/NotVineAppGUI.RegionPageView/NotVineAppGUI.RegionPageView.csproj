@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\NotVineApp.Common\NotVineApp.Common.csproj" />
+    <ProjectReference Include="..\NotVineAppGUI.HomeModule\NotVineAppGUI.HomeModule.csproj" />
     <ProjectReference Include="..\NotVIneAppGUI.LoginModule\NotVineAppGUI.LoginModule.csproj" />
   </ItemGroup>
 

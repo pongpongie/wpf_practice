@@ -1,0 +1,20 @@
+﻿<UserControl x:Class="NotVineAppGUI.RegionPageView.Views.HomePageView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:NotVineAppGUI.RegionPageView.Views"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:views="clr-namespace:NotVineAppGUI.HomeModule.Views;assembly=NotVineAppGUI.HomeModule"
+             xmlns:vm="clr-namespace:NotVineAppGUI.HomeModule.ViewModels;assembly=NotVineAppGUI.HomeModule"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <DataTemplate DataType="{x:Type vm:HomeViewModel}">
+            <views:HomeView />
+        </DataTemplate>
+    </UserControl.Resources>
+    <Grid Background="BlanchedAlmond">
+        <ContentControl x:Name="HomeRegion"
+                        HorizontalAlignment="Center"
+                        Content="{Binding CurrentViewModel}" />
+    </Grid>
+</UserControl>

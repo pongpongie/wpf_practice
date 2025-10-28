@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace NotVineAppGUI.HomeModule.ViewModels
 {
-    internal class HomeViewModels
+    public class HomeViewModel
     {
+        public HomeViewModel()
+        {
+
+        }
     }
 }
