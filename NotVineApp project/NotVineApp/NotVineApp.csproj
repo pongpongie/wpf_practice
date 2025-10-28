@@ -10,6 +10,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\NotVineApp_GUI\NotVIneAppGUI.LoginModule\NotVineAppGUI.LoginModule.csproj" />
+    <ProjectReference Include="..\NotVineApp_GUI\NotVineAppGUI.RegionPageView\NotVineAppGUI.RegionPageView.csproj" />
+    <ProjectReference Include="..\NotVineApp_GUI\NotVineAppGUI.RegionPageView\NotVineAppGUI.RegionPageView.csproj" />
   </ItemGroup>
 
 </Project>
