@@ -3,7 +3,7 @@ using System.Windows;
 
 namespace NotVineAppGUI.LoginModule.ViewModels
 {
-    internal class LoginFormViewModel : ViewModelBase
+    public class LoginFormViewModel : ViewModelBase
     {
         private string _textBoxText = "Login Form";
 
