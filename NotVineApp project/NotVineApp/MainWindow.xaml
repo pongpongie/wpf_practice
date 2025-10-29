@@ -3,8 +3,20 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="NotVine App"
         Width="1280"
-        Height="720">
-    <Grid>
+        Height="720"
+        Background="{x:Null}"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None">
+
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="0"
+                      CornerRadius="2"
+                      GlassFrameThickness="0"
+                      NonClientFrameEdges="None"
+                      ResizeBorderThickness="3" />
+    </WindowChrome.WindowChrome>
+
+    <Grid MouseDown="Border_MouseDown">
         <ContentControl x:Name="MainContentControl" />
     </Grid>
 </Window>

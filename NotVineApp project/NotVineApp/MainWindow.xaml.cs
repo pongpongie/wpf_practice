@@ -1,6 +1,8 @@
-﻿using System.Windows;
-using NotVineApp.Common.Services;
+﻿using NotVineApp.Common.Services;
 using NotVineAppGUI.LoginModule.Views;
+using NotVineAppGUI.RegionPageView.Views;
+using System.Windows;
+using System.Windows.Input;
 
 namespace NotVineApp
 {
@@ -17,7 +19,15 @@ namespace NotVineApp
             _navigationService.Initialize(MainContentControl);
 
             // 시작 페이지
-            _navigationService.NavigateTo<LoginFormView>();
+            _navigationService.NavigateTo<AuthPageView>();
+        }
+
+        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                this.DragMove();
+            }
         }
     }
 }
