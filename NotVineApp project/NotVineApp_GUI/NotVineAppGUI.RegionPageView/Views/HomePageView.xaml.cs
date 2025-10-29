@@ -1,4 +1,6 @@
-﻿using System.Windows.Controls;
+﻿using NotVineApp.Common.Services;
+using NotVineAppGUI.RegionPageView.ViewModels;
+using System.Windows.Controls;
 
 namespace NotVineAppGUI.RegionPageView.Views
 {
@@ -7,6 +9,7 @@ namespace NotVineAppGUI.RegionPageView.Views
         public HomePageView()
         {
             InitializeComponent();
+            this.DataContext = ServiceLocator.Instance.Resolve<HomePageViewModel>();
         }
     }
 }

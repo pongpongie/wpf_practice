@@ -1,4 +1,5 @@
 ﻿using NotVineApp.Common.Utils;
+using NotVineApp.Common.Services;
 using NotVineAppGUI.HomeModule.ViewModels;
 
 namespace NotVineAppGUI.RegionPageView.ViewModels
@@ -9,7 +10,7 @@ namespace NotVineAppGUI.RegionPageView.ViewModels
 
         public HomePageViewModel()
         {
-            CurrentViewModel = new HomeViewModel();
+            CurrentViewModel = ServiceLocator.Instance.Resolve<HomeViewModel>();
         }
     }
 

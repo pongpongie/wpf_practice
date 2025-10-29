@@ -4,6 +4,8 @@ using NotVineAppGUI.LoginModule.Views;
 using NotVineAppGUI.LoginModule.ViewModels;
 using NotVineAppGUI.RegionPageView.Views;
 using NotVineAppGUI.RegionPageView.ViewModels;
+using NotVineAppGUI.HomeModule.Views;
+using NotVineAppGUI.HomeModule.ViewModels;
 
 namespace NotVineApp
 {
@@ -31,12 +33,14 @@ namespace NotVineApp
 
             // 뷰 키 등록 (순환 참조 방지)
             navigationService.RegisterView<LoginFormView>("LoginForm");
+            navigationService.RegisterView<HomeView>("Home");
             navigationService.RegisterView<HomePageView>("HomePage");
             navigationService.RegisterView<AuthPageView>("AuthPage");
 
             // ViewModels - Transient
             locator.RegisterTransient(() =>
                 new LoginFormViewModel(locator.Resolve<INavigationService>()));
+            locator.RegisterTransient(() => new HomeViewModel(locator.Resolve<INavigationService>()));
 
             locator.RegisterTransient(() => new AuthPageViewModel());
             locator.RegisterTransient(() => new HomePageViewModel());
@@ -44,6 +48,7 @@ namespace NotVineApp
             // Views - Transient
             locator.RegisterTransient(() =>
                 new LoginFormView(locator.Resolve<LoginFormViewModel>()));
+            locator.RegisterTransient(() => new HomeView(locator.Resolve<HomeViewModel>()));
 
             locator.RegisterTransient(() => new HomePageView());
             locator.RegisterTransient(() => new AuthPageView());

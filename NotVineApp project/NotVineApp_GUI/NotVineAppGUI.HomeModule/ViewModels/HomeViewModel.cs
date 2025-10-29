@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using NotVineApp.Common.Utils;
+using NotVineApp.Common.Services;
 
 namespace NotVineAppGUI.HomeModule.ViewModels
 {
-    public class HomeViewModel
+    public class HomeViewModel : ViewModelBase
     {
-        public HomeViewModel()
+        private readonly INavigationService _navigationService;
+        public HomeViewModel(INavigationService navigationService)
         {
-
+            _navigationService = navigationService;
         }
     }
 }
