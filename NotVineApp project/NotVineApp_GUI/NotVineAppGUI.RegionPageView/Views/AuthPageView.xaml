@@ -14,9 +14,17 @@
 
         <Style x:Key="BackgroundGridStyle"
                TargetType="Grid">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5">
+                        <GradientStop Offset="0.0" Color="#00a6ec" />
+                        <GradientStop Offset="0.3" Color="white" />
+                        <GradientStop Offset="0.7" Color="white" />
+                        <GradientStop Offset="1.0" Color="#00a6ec" />
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
 
-            <Setter Property="Background"
-                    Value="LightGreen" />
         </Style>
 
         <Style x:Key="LoginFormRegionStyle"
