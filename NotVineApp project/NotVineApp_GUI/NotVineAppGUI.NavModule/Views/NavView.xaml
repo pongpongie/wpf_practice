@@ -1,0 +1,95 @@
+﻿<UserControl x:Class="NotVineAppGUI.NavModule.Views.NavView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:NotVineAppGUI.NavModule.Views"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <Style x:Key="StackPanelStyle"
+               TargetType="StackPanel">
+            <Setter Property="Orientation"
+                    Value="Horizontal" />
+        </Style>
+        <Style x:Key="ButtonStyle"
+               TargetType="Button">
+            <Setter Property="Background"
+                    Value="Coral" />
+            <Setter Property="FontSize"
+                    Value="16" />
+            <Setter Property="Foreground"
+                    Value="White" />
+        </Style>
+        <Style x:Key="NavButtonStyle"
+               TargetType="Button">
+            <Setter Property="Background"
+                    Value="DodgerBlue" />
+
+        </Style>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="200" />
+        </Grid.ColumnDefinitions>
+
+        <ItemsControl Grid.Column="0"
+                      ItemsSource="{Binding NavItems}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Style="{StaticResource StackPanelStyle}" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Button Command="{Binding DataContext.NavigateToCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                            CommandParameter="{Binding}"
+                            Content="{Binding DisplayName}"
+                            Style="{StaticResource ButtonStyle}" />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <Grid Grid.Column="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0"
+                        Command="{Binding GoCommand}"
+                        CommandParameter="Back"
+                        Content="&lt;"
+                        Style="{StaticResource NavButtonStyle}" />
+                <Button Grid.Column="1"
+                        Command="{Binding GoCommand}"
+                        CommandParameter="Forward"
+                        Content="&gt;"
+                        Style="{StaticResource NavButtonStyle}" />
+            </Grid>
+            <Button Grid.Column="1"
+                    Command="{Binding GoCommand}"
+                    CommandParameter="Home"
+                    Content="Home"
+                    Style="{StaticResource ButtonStyle}" />
+            <Button Grid.Column="2"
+                    Command="{Binding GoCommand}"
+                    CommandParameter="Exit"
+                    Content="X"
+                    Style="{StaticResource ButtonStyle}" />
+
+        </Grid>
+
+
+    </Grid>
+</UserControl>
