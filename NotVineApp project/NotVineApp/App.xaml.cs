@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using NotVineApp.Common.Services;
+using NotVineApp.Common.Utils;
 using NotVineAppGUI.LoginModule.Views;
 using NotVineAppGUI.LoginModule.ViewModels;
 using NotVineAppGUI.RegionPageView.Views;
@@ -24,13 +25,13 @@ namespace NotVineApp
             ConfigureServices();
 
             // MainWindow 생성 및 표시
-            var mainWindow = ServiceLocator.Instance.Resolve<MainWindow>();
+            var mainWindow = IoCContainer.Instance.Resolve<MainWindow>();
             mainWindow.Show();
         }
 
         private void ConfigureServices()
         {
-            var locator = ServiceLocator.Instance;
+            var locator = IoCContainer.Instance;
 
             // Services - Singleton
             var navigationService = new NavigationService();

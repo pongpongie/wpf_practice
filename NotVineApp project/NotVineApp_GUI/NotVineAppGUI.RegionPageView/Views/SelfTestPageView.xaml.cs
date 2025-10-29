@@ -1,4 +1,4 @@
-﻿using NotVineApp.Common.Services;
+﻿using NotVineApp.Common.Utils;
 using NotVineAppGUI.RegionPageView.ViewModels;
 using System.Windows.Controls;
 
@@ -9,7 +9,7 @@ namespace NotVineAppGUI.RegionPageView.Views
         public SelfTestPageView()
         {
             InitializeComponent();
-            this.DataContext = ServiceLocator.Instance.Resolve<SelfTestPageViewModel>();
+            this.DataContext = IoCContainer.Instance.Resolve<SelfTestPageViewModel>();
         }
     }
 }

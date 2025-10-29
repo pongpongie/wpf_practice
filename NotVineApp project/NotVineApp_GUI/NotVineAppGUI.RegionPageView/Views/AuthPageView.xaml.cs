@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 using NotVineAppGUI.RegionPageView.ViewModels;
-using NotVineApp.Common.Services;
+using NotVineApp.Common.Utils;
 
 namespace NotVineAppGUI.RegionPageView.Views
 {
@@ -12,8 +12,7 @@ namespace NotVineAppGUI.RegionPageView.Views
         public AuthPageView()
         {
             InitializeComponent();
-            // ViewModel을 ServiceLocator를 통해 설정 (선택사항)
-            this.DataContext = ServiceLocator.Instance.Resolve<AuthPageViewModel>();
+            this.DataContext = IoCContainer.Instance.Resolve<AuthPageViewModel>();
         }
     }
 }

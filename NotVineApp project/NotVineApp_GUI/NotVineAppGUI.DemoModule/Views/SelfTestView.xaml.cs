@@ -1,5 +1,5 @@
 ﻿using NotVineAppGUI.DemoModule.ViewModels;
-using NotVineApp.Common.Services;
+using NotVineApp.Common.Utils;
 
 using System.Windows.Controls;
 
@@ -13,7 +13,7 @@ namespace NotVineAppGUI.DemoModule.Views
             this.DataContext = viewModel;
         }
 
-        public SelfTestView() : this(ServiceLocator.Instance.Resolve<SelfTestViewModel>())
+        public SelfTestView() : this(IoCContainer.Instance.Resolve<SelfTestViewModel>())
         {
         }
     }

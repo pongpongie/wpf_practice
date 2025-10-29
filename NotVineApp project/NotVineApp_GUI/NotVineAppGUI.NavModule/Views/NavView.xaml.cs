@@ -1,5 +1,5 @@
 ﻿using NotVineAppGUI.NavModule.ViewModels;
-using NotVineApp.Common.Services;
+using NotVineApp.Common.Utils;
 
 using System.Windows.Controls;
 
@@ -13,7 +13,7 @@ namespace NotVineAppGUI.NavModule.Views
             this.DataContext = viewModel;
         }
 
-        public NavView() : this(ServiceLocator.Instance.Resolve<NavViewModel>())
+        public NavView() : this(IoCContainer.Instance.Resolve<NavViewModel>())
         {
         }
     }

@@ -11,8 +11,8 @@ namespace NotVineAppGUI.RegionPageView.ViewModels
 
         public AuthPageViewModel()
         {
-            // ServiceLocator를 통해 의존성 주입된 ViewModel 가져오기
-            CurrentViewModel = ServiceLocator.Instance.Resolve<LoginFormViewModel>();
+            // IoCContainer를 통해 의존성 주입된 ViewModel 가져오기
+            CurrentViewModel = IoCContainer.Instance.Resolve<AuthPageViewModel>();
         }
     }
 }

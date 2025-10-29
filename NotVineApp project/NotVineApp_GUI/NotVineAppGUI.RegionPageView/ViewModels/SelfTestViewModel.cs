@@ -13,8 +13,8 @@ namespace NotVineAppGUI.RegionPageView.ViewModels
 
         public SelfTestPageViewModel()
         {
-            SelfTestViewModel = ServiceLocator.Instance.Resolve<SelfTestViewModel>();
-            NavViewModel = ServiceLocator.Instance.Resolve<NavViewModel>();
+            SelfTestViewModel = IoCContainer.Instance.Resolve<SelfTestViewModel>();
+            NavViewModel = IoCContainer.Instance.Resolve<NavViewModel>();
         }
     }
 

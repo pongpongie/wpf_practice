@@ -13,8 +13,8 @@ namespace NotVineAppGUI.RegionPageView.ViewModels
 
         public HomePageViewModel()
         {
-            HomeViewModel = ServiceLocator.Instance.Resolve<HomeViewModel>();
-            NavViewModel = ServiceLocator.Instance.Resolve<NavViewModel>();
+            HomeViewModel = IoCContainer.Instance.Resolve<HomeViewModel>();
+            NavViewModel = IoCContainer.Instance.Resolve<NavViewModel>();
         }
     }
 

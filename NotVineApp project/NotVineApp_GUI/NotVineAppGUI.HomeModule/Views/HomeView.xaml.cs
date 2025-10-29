@@ -1,6 +1,6 @@
 ﻿using NotVineAppGUI.HomeModule.ViewModels;
 using System.Windows.Controls;
-using NotVineApp.Common.Services;
+using NotVineApp.Common.Utils;
 
 
 namespace NotVineAppGUI.HomeModule.Views
@@ -16,7 +16,7 @@ namespace NotVineAppGUI.HomeModule.Views
             this.DataContext = viewModel;
         }
 
-        public HomeView() : this(ServiceLocator.Instance.Resolve<HomeViewModel>())
+        public HomeView() : this(IoCContainer.Instance.Resolve<HomeViewModel>())
         {
         }
     }

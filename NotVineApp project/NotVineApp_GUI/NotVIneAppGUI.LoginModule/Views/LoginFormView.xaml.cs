@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 using NotVineAppGUI.LoginModule.ViewModels;
-using NotVineApp.Common.Services;
+using NotVineApp.Common.Utils;
 
 namespace NotVineAppGUI.LoginModule.Views
 {
@@ -14,7 +14,7 @@ namespace NotVineAppGUI.LoginModule.Views
         }
 
         // XAML용 기본 생성자
-        public LoginFormView() : this(ServiceLocator.Instance.Resolve<LoginFormViewModel>())
+        public LoginFormView() : this(IoCContainer.Instance.Resolve<LoginFormViewModel>())
         {
         }
     }
