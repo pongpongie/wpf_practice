@@ -22,7 +22,7 @@ namespace NotVineAppGUI.NavModule.ViewModels
 
             Pages = new ObservableCollection<NavPageInfo>
             {
-                new NavPageInfo { Title="홈", PageKey="Home", IsVisible=true},
+                new NavPageInfo { Title="홈", PageKey="Home", IsVisible=false},
                 new NavPageInfo { Title="로그인", PageKey="AuthPage", IsVisible=true},
                 new NavPageInfo { Title="자가 점검", PageKey="SelfTestPage", IsVisible=true},
             };

@@ -2,17 +2,16 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:NotVineAppGUI.NavModule.Views"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:utils="clr-namespace:NotVineAppGUI.NavModule.Utils"
              mc:Ignorable="d">
 
     <UserControl.Resources>
+        <utils:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
         <Style x:Key="StackPanelStyle"
                TargetType="StackPanel">
             <Setter Property="Orientation"
                     Value="Horizontal" />
-            <Setter Property="Visibility"
-                    Value="{Binding IsVisible}" />
         </Style>
         <Style x:Key="ButtonStyle"
                TargetType="Button">
@@ -51,7 +50,8 @@
                     <Button Command="{Binding DataContext.NavigateCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
                             CommandParameter="{Binding}"
                             Content="{Binding Title}"
-                            Style="{StaticResource ButtonStyle}" />
+                            Style="{StaticResource ButtonStyle}"
+                            Visibility="{Binding IsVisible, Converter={StaticResource BoolToVisibilityConverter}}" />
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
