@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotVineAppGUI.HomeModule", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotVineAppGUI.RegionPageView", "..\NotVineApp_GUI\NotVineAppGUI.RegionPageView\NotVineAppGUI.RegionPageView.csproj", "{49C0F3F3-7417-50FE-A66E-1A644FEF40E0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotVineAppGUI.NavModule", "..\NotVineApp_GUI\NotVineAppGUI.NavModule\NotVineAppGUI.NavModule.csproj", "{08C6A761-170D-4437-8725-0A82076B0A4A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,10 @@ Global
 		{49C0F3F3-7417-50FE-A66E-1A644FEF40E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{49C0F3F3-7417-50FE-A66E-1A644FEF40E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{49C0F3F3-7417-50FE-A66E-1A644FEF40E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08C6A761-170D-4437-8725-0A82076B0A4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08C6A761-170D-4437-8725-0A82076B0A4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08C6A761-170D-4437-8725-0A82076B0A4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08C6A761-170D-4437-8725-0A82076B0A4A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -49,6 +55,7 @@ Global
 		{F1B31A1C-77DC-6F93-F0F6-E9130CFE8C1E} = {C8D5274F-AC00-46C7-1F8D-E88E81087A52}
 		{46CDE29B-9E6B-44FD-8EBA-741F49B5F70F} = {C8D5274F-AC00-46C7-1F8D-E88E81087A52}
 		{49C0F3F3-7417-50FE-A66E-1A644FEF40E0} = {C8D5274F-AC00-46C7-1F8D-E88E81087A52}
+		{08C6A761-170D-4437-8725-0A82076B0A4A} = {C8D5274F-AC00-46C7-1F8D-E88E81087A52}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {26F6AD29-A2A7-4594-B705-B78148386046}

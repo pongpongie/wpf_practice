@@ -2,15 +2,21 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:homeVM="clr-namespace:NotVineAppGUI.HomeModule.ViewModels;assembly=NotVineAppGUI.HomeModule"
+             xmlns:homeView="clr-namespace:NotVineAppGUI.HomeModule.Views;assembly=NotVineAppGUI.HomeModule"
              xmlns:local="clr-namespace:NotVineAppGUI.RegionPageView.Views"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:views="clr-namespace:NotVineAppGUI.HomeModule.Views;assembly=NotVineAppGUI.HomeModule"
-             xmlns:vm="clr-namespace:NotVineAppGUI.HomeModule.ViewModels;assembly=NotVineAppGUI.HomeModule"
+             xmlns:navVM="clr-namespace:NotVineAppGUI.NavModule.ViewModels;assembly=NotVineAppGUI.NavModule"
+             xmlns:navView="clr-namespace:NotVineAppGUI.NavModule.Views;assembly=NotVineAppGUI.NavModule"
              mc:Ignorable="d">
 
     <UserControl.Resources>
-        <DataTemplate DataType="{x:Type vm:HomeViewModel}">
-            <views:HomeView />
+
+        <DataTemplate DataType="{x:Type homeVM:HomeViewModel}">
+            <homeView:HomeView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type navVM:NavViewModel}">
+            <navView:NavView />
         </DataTemplate>
 
         <Style x:Key="HomeRegionStyle"
@@ -20,11 +26,23 @@
             <Setter Property="VerticalAlignment"
                     Value="Center" />
         </Style>
+
     </UserControl.Resources>
 
     <Grid Background="LightGreen">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <ContentControl x:Name="NavRegion"
+                        Grid.Row="0"
+                        Content="{Binding NavViewModel}" />
         <ContentControl x:Name="HomeRegion"
-                        Content="{Binding CurrentViewModel}"
+                        Grid.Row="1"
+                        Content="{Binding HomeViewModel}"
                         Style="{StaticResource HomeRegionStyle}" />
+
     </Grid>
 </UserControl>
