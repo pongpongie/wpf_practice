@@ -16,11 +16,9 @@
                TargetType="Grid">
             <Setter Property="Background">
                 <Setter.Value>
-                    <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5">
+                    <LinearGradientBrush StartPoint="1,0" EndPoint="1,1">
                         <GradientStop Offset="0.0" Color="#00a6ec" />
-                        <GradientStop Offset="0.3" Color="white" />
-                        <GradientStop Offset="0.7" Color="white" />
-                        <GradientStop Offset="1.0" Color="#00a6ec" />
+                        <GradientStop Offset="1.0" Color="white" />
                     </LinearGradientBrush>
                 </Setter.Value>
             </Setter>

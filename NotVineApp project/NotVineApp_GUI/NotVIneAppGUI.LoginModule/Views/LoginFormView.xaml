@@ -124,6 +124,7 @@
                 <TextBlock VerticalAlignment="Center"
                            d:Text="로그인하세요 제발"
                            FontSize="20"
+                           Foreground="white"
                            Text="{Binding TextBoxText}"
                            TextAlignment="Center" />
             </Grid>
