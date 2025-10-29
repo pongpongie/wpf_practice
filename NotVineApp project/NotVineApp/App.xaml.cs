@@ -8,6 +8,9 @@ using NotVineAppGUI.HomeModule.Views;
 using NotVineAppGUI.HomeModule.ViewModels;
 using NotVineAppGUI.NavModule.ViewModels;
 using NotVineAppGUI.NavModule.Views;
+using NotVineAppGUI.DemoModule.Views;
+using NotVineAppGUI.DemoModule.ViewModels;
+
 
 namespace NotVineApp
 {
@@ -39,24 +42,29 @@ namespace NotVineApp
             //navigationService.RegisterView<NavView>("Nav");
             navigationService.RegisterView<HomePageView>("HomePage");
             navigationService.RegisterView<AuthPageView>("AuthPage");
+            navigationService.RegisterView<SelfTestPageView>("SelfTestPage");
 
             // ViewModels - Transient
             locator.RegisterTransient(() =>
                 new LoginFormViewModel(locator.Resolve<INavigationService>()));
             locator.RegisterTransient(() => new HomeViewModel(locator.Resolve<INavigationService>()));
             locator.RegisterTransient(() => new NavViewModel(locator.Resolve<INavigationService>()));
+            locator.RegisterTransient(() => new SelfTestViewModel(locator.Resolve<INavigationService>()));
 
             locator.RegisterTransient(() => new AuthPageViewModel());
             locator.RegisterTransient(() => new HomePageViewModel());
+            locator.RegisterTransient(() => new SelfTestPageViewModel());
 
             // Views - Transient
             locator.RegisterTransient(() =>
                 new LoginFormView(locator.Resolve<LoginFormViewModel>()));
             locator.RegisterTransient(() => new HomeView(locator.Resolve<HomeViewModel>()));
             locator.RegisterTransient(() => new NavView(locator.Resolve<NavViewModel>()));
+            locator.RegisterTransient(() => new SelfTestView(locator.Resolve<SelfTestViewModel>()));
 
             locator.RegisterTransient(() => new HomePageView());
             locator.RegisterTransient(() => new AuthPageView());
+            locator.RegisterTransient(() => new SelfTestPageView());
 
             // MainWindow - Singleton
             locator.RegisterSingleton(() =>

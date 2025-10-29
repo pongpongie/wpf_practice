@@ -24,6 +24,7 @@ namespace NotVineAppGUI.NavModule.ViewModels
             {
                 new NavPageInfo { Title="홈", PageKey="Home", IsVisible=true},
                 new NavPageInfo { Title="로그인", PageKey="AuthPage", IsVisible=true},
+                new NavPageInfo { Title="자가 점검", PageKey="SelfTestPage", IsVisible=true},
             };
 
             NavigateCommand = new RelayCommand(Navigate);
