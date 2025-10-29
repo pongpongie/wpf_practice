@@ -5,8 +5,30 @@
              xmlns:local="clr-namespace:NotVineAppGUI.HomeModule.Views"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d">
+    <UserControl.Resources>
 
-    <Grid>
-        <TextBlock Text="This is Home View" />
+        <Style x:Key="TextGridStyle"
+               TargetType="Grid">
+            <Setter Property="Width"
+                    Value="860" />
+            <Setter Property="Height"
+                    Value="540" />
+            <Setter Property="Background"
+                    Value="PaleTurquoise" />
+        </Style>
+
+        <Style x:Key="TextStyle"
+               TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment"
+                    Value="Center" />
+            <Setter Property="VerticalAlignment"
+                    Value="Center" />
+            <Setter Property="FontSize"
+                    Value="30" />
+        </Style>
+    </UserControl.Resources>
+    <Grid Style="{StaticResource TextGridStyle}">
+        <TextBlock Style="{StaticResource TextStyle}"
+                   Text="This is Home View" />
     </Grid>
 </UserControl>
