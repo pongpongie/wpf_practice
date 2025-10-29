@@ -13,7 +13,7 @@ namespace NotVineAppGUI.RegionPageView.Views
         {
             InitializeComponent();
             // ViewModel을 ServiceLocator를 통해 설정 (선택사항)
-            // this.DataContext = ServiceLocator.Instance.Resolve<AuthPageViewModel>();
+            this.DataContext = ServiceLocator.Instance.Resolve<AuthPageViewModel>();
         }
     }
 }
