@@ -34,9 +34,9 @@ namespace NotVineApp
             locator.RegisterSingleton<INavigationService>(navigationService);
 
             // 뷰 키 등록 (순환 참조 방지)
-            navigationService.RegisterView<LoginFormView>("LoginForm");
-            navigationService.RegisterView<HomeView>("Home");
-            navigationService.RegisterView<NavView>("Nav");
+            //navigationService.RegisterView<LoginFormView>("LoginForm");
+            //navigationService.RegisterView<HomeView>("Home");
+            //navigationService.RegisterView<NavView>("Nav");
             navigationService.RegisterView<HomePageView>("HomePage");
             navigationService.RegisterView<AuthPageView>("AuthPage");
 

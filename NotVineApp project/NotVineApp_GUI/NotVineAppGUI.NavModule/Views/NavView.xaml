@@ -11,6 +11,8 @@
                TargetType="StackPanel">
             <Setter Property="Orientation"
                     Value="Horizontal" />
+            <Setter Property="Visibility"
+                    Value="{Binding IsVisible}" />
         </Style>
         <Style x:Key="ButtonStyle"
                TargetType="Button">
@@ -37,7 +39,7 @@
         </Grid.ColumnDefinitions>
 
         <ItemsControl Grid.Column="0"
-                      ItemsSource="{Binding NavItems}">
+                      ItemsSource="{Binding Pages}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Style="{StaticResource StackPanelStyle}" />
@@ -46,9 +48,9 @@
 
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Button Command="{Binding DataContext.NavigateToCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                    <Button Command="{Binding DataContext.NavigateCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
                             CommandParameter="{Binding}"
-                            Content="{Binding DisplayName}"
+                            Content="{Binding Title}"
                             Style="{StaticResource ButtonStyle}" />
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
