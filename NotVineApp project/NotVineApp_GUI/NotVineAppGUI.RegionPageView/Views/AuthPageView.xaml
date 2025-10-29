@@ -14,8 +14,13 @@
 
         <Style x:Key="BackgroundGridStyle"
                TargetType="Grid">
+
             <Setter Property="Background"
-                    Value="FloralWhite" />
+                    Value="LightGreen" />
+        </Style>
+
+        <Style x:Key="LoginFormRegionStyle"
+               TargetType="ContentControl">
             <Setter Property="HorizontalAlignment"
                     Value="Center" />
             <Setter Property="VerticalAlignment"
@@ -27,7 +32,8 @@
     <Grid Style="{StaticResource BackgroundGridStyle}">
         <ContentControl x:Name="LoginFormRegion"
                         Grid.Row="0"
-                        Content="{Binding CurrentViewModel}" />
+                        Content="{Binding CurrentViewModel}"
+                        Style="{StaticResource LoginFormRegionStyle}" />
 
     </Grid>
 </UserControl>
