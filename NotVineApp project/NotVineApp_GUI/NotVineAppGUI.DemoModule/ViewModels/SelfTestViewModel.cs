@@ -6,10 +6,9 @@ namespace NotVineAppGUI.DemoModule.ViewModels
     public class SelfTestViewModel : ViewModelBase
 
     {
-        private readonly INavigationService _navigationService;
-        public SelfTestViewModel(INavigationService navigationService)
+        public SelfTestViewModel()
         {
-            _navigationService = navigationService;
+     
         }
     }
 }

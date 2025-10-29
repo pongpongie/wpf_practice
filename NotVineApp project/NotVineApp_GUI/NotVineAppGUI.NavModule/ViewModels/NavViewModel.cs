@@ -9,16 +9,16 @@ namespace NotVineAppGUI.NavModule.ViewModels
 {
     public class NavViewModel : ViewModelBase
     {
-        private readonly INavigationService _navigationService;
+        
 
         public ICommand NavigateCommand { get; }
         public ICommand GoCommand { get; }
 
         public ObservableCollection<NavPageInfo> Pages { get; }
 
-        public NavViewModel(INavigationService navigationService)
+        public NavViewModel()
         {
-            _navigationService = navigationService;
+           
 
             Pages = new ObservableCollection<NavPageInfo>
             {
@@ -32,6 +32,11 @@ namespace NotVineAppGUI.NavModule.ViewModels
 
         }
 
+        public static NavViewModel Create()
+        {
+            return new NavViewModel();
+        }
+
         private void Go(object parameter)
         {
 
@@ -39,8 +44,7 @@ namespace NotVineAppGUI.NavModule.ViewModels
 
         private void Navigate(object parameter)
         {
-            if (parameter is NavPageInfo page)
-                _navigationService.NavigateTo(page.PageKey);
+            
 
         }
     }

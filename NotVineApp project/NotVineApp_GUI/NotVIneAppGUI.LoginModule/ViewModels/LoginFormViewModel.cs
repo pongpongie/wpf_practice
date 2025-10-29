@@ -1,11 +1,11 @@
 ﻿using NotVineApp.Common.Utils;
 using NotVineApp.Common.Services;
+using NotVineApp.Common.Settings;
 
 namespace NotVineAppGUI.LoginModule.ViewModels
 {
     public class LoginFormViewModel : ViewModelBase
     {
-        private readonly INavigationService _navigationService;
         private string _textBoxText = "Login Form";
 
         public string TextBoxText
@@ -21,18 +21,27 @@ namespace NotVineAppGUI.LoginModule.ViewModels
             }
         }
 
-        public LoginFormViewModel(INavigationService navigationService)
+        public LoginFormViewModel()
         {
-            _navigationService = navigationService;
             ClickCommand = new RelayCommand(OnButtonClick);
+        }
+
+        // Factory Method 추가
+        public static LoginFormViewModel Create()
+        {
+            return new LoginFormViewModel();
         }
 
         public RelayCommand ClickCommand { get; }
 
         private void OnButtonClick(object parameter)
         {
-            // 문자열 키로 네비게이션 (순환 참조 없음)
-            _navigationService.NavigateTo("HomePage");
+
+            if (ClickCommand != null)
+            {
+                ModuleManager.DefaultManager.Inject(Regions.MainRegion, PageViews.HomePageView);
+                ModuleManager.DefaultManager.Inject(Regions.HomeRegion, Modules.HomeModule);
+            }
         }
     }
 }

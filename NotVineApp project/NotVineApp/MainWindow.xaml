@@ -17,6 +17,6 @@
     </WindowChrome.WindowChrome>
 
     <Grid MouseDown="Border_MouseDown">
-        <ContentControl x:Name="MainContentControl" />
+        <ContentControl x:Name="MainRegion" />
     </Grid>
 </Window>

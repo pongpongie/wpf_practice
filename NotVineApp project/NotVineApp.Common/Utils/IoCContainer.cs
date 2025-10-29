@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace NotVineApp.Common.Utils
+﻿namespace NotVineApp.Common.Utils
 {
     public class IoCContainer
     {
@@ -19,17 +16,29 @@ namespace NotVineApp.Common.Utils
             _transients[typeof(TService)] = () => factory();
         }
 
+        // Transient 등록: 기본 생성자로 매번 새 인스턴스 생성
+        public void RegisterTransient<TService>() where TService : class, new()
+        {
+            _transients[typeof(TService)] = () => new TService();
+        }
+
         // Singleton 등록: 인스턴스 직접 등록
         public void RegisterSingleton<TService>(TService instance) where TService : class
         {
             _singletons[typeof(TService)] = instance;
         }
 
-        // Singleton 등록: 팩토리로 한 번만 생성
-        public void RegisterSingleton<TService>(Func<TService> factory) where TService : class
+        // Singleton 등록: 팩토리는 나중에 실행 (지연 초기화)
+        public void RegisterSingletonLazy<TService>(Func<TService> factory) where TService : class
         {
-            var instance = factory();
-            _singletons[typeof(TService)] = instance;
+            _transients[typeof(TService)] = () =>
+            {
+                if (!_singletons.ContainsKey(typeof(TService)))
+                {
+                    _singletons[typeof(TService)] = factory();
+                }
+                return _singletons[typeof(TService)];
+            };
         }
 
         // 해제(선택적)

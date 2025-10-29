@@ -1,6 +1,5 @@
-﻿using NotVineApp.Common.Services;
-using NotVineAppGUI.LoginModule.Views;
-using NotVineAppGUI.RegionPageView.Views;
+﻿using NotVineApp.Common.Settings;
+using NotVineApp.Common.Utils;
 using System.Windows;
 using System.Windows.Input;
 
@@ -8,18 +7,12 @@ namespace NotVineApp
 {
     public partial class MainWindow : Window
     {
-        private readonly INavigationService _navigationService;
-
-        public MainWindow(INavigationService navigationService)
+        public MainWindow()
         {
             InitializeComponent();
-            _navigationService = navigationService;
 
-            // 네비게이션 초기화
-            _navigationService.Initialize(MainContentControl);
-
-            // 시작 페이지
-            _navigationService.NavigateTo<AuthPageView>();
+            // ModuleManager에 MainRegion 등록만 수행
+            ModuleManager.DefaultManager.RegisterRegion(Regions.MainRegion, MainRegion);
         }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)

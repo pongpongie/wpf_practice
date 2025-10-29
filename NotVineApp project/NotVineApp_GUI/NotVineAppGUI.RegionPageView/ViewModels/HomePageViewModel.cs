@@ -1,21 +1,14 @@
 ﻿using NotVineApp.Common.Utils;
-using NotVineApp.Common.Services;
-using NotVineAppGUI.HomeModule.ViewModels;
-using NotVineAppGUI.NavModule.ViewModels;
 
-
-namespace NotVineAppGUI.RegionPageView.ViewModels
+public class HomePageViewModel : ViewModelBase
 {
-    public class HomePageViewModel : ViewModelBase
+    public HomePageViewModel()
     {
-        public Object HomeViewModel { get; set; }
-        public Object NavViewModel { get; set; }
-
-        public HomePageViewModel()
-        {
-            HomeViewModel = IoCContainer.Instance.Resolve<HomeViewModel>();
-            NavViewModel = IoCContainer.Instance.Resolve<NavViewModel>();
-        }
+        // 아무 의존성 없음 - 단순 레이아웃 제공
     }
 
+    public static HomePageViewModel Create()
+    {
+        return new HomePageViewModel();
+    }
 }

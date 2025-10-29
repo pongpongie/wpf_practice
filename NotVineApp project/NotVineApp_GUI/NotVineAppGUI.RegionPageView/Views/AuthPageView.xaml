@@ -8,9 +8,9 @@
              mc:Ignorable="d">
 
     <UserControl.Resources>
-        <DataTemplate DataType="{x:Type vm:LoginFormViewModel}">
+        <!--<DataTemplate DataType="{x:Type vm:LoginFormViewModel}">
             <view:LoginFormView />
-        </DataTemplate>
+        </DataTemplate>-->
 
         <Style x:Key="BackgroundGridStyle"
                TargetType="Grid">
@@ -34,12 +34,14 @@
         </Style>
 
     </UserControl.Resources>
+    <ContentControl x:Name="AuthRegion">
+        <Grid Style="{StaticResource BackgroundGridStyle}">
+            <ContentControl x:Name="LoginFormRegion"
+                            Grid.Row="0"
+                            Content="{Binding CurrentViewModel}"
+                            Style="{StaticResource LoginFormRegionStyle}" />
 
-    <Grid Style="{StaticResource BackgroundGridStyle}">
-        <ContentControl x:Name="LoginFormRegion"
-                        Grid.Row="0"
-                        Content="{Binding CurrentViewModel}"
-                        Style="{StaticResource LoginFormRegionStyle}" />
+        </Grid>
+    </ContentControl>
 
-    </Grid>
 </UserControl>

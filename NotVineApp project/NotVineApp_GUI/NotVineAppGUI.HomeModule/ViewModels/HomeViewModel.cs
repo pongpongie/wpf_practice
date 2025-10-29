@@ -5,10 +5,17 @@ namespace NotVineAppGUI.HomeModule.ViewModels
 {
     public class HomeViewModel : ViewModelBase
     {
-        private readonly INavigationService _navigationService;
-        public HomeViewModel(INavigationService navigationService)
+       
+
+        public HomeViewModel( )
         {
-            _navigationService = navigationService;
+            
+        }
+
+        // Factory Method 추가
+        public static HomeViewModel Create()
+        {
+            return new HomeViewModel();
         }
     }
 }

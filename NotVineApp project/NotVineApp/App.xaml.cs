@@ -1,17 +1,14 @@
-﻿using System.Windows;
-using NotVineApp.Common.Services;
-using NotVineApp.Common.Utils;
-using NotVineAppGUI.LoginModule.Views;
-using NotVineAppGUI.LoginModule.ViewModels;
-using NotVineAppGUI.RegionPageView.Views;
-using NotVineAppGUI.RegionPageView.ViewModels;
-using NotVineAppGUI.HomeModule.Views;
+﻿using NotVineApp.Common.Utils;
+using NotVineApp.Common.Settings;
 using NotVineAppGUI.HomeModule.ViewModels;
+using NotVineAppGUI.HomeModule.Views;
+using NotVineAppGUI.LoginModule.ViewModels;
+using NotVineAppGUI.LoginModule.Views;
 using NotVineAppGUI.NavModule.ViewModels;
 using NotVineAppGUI.NavModule.Views;
-using NotVineAppGUI.DemoModule.Views;
-using NotVineAppGUI.DemoModule.ViewModels;
-
+using NotVineAppGUI.RegionPageView.ViewModels;
+using NotVineAppGUI.RegionPageView.Views;
+using System.Windows;
 
 namespace NotVineApp
 {
@@ -21,55 +18,77 @@ namespace NotVineApp
         {
             base.OnStartup(e);
 
-            // 서비스 등록
             ConfigureServices();
+            RegisterModules();
 
-            // MainWindow 생성 및 표시
+            // MainWindow 표시
             var mainWindow = IoCContainer.Instance.Resolve<MainWindow>();
             mainWindow.Show();
+
+            // MainWindow가 표시된 후 모듈 주입
+            InjectModules();
         }
+
+        protected ModuleManager Manager => ModuleManager.DefaultManager;
 
         private void ConfigureServices()
         {
-            var locator = IoCContainer.Instance;
+            var container = IoCContainer.Instance;
 
-            // Services - Singleton
-            var navigationService = new NavigationService();
-            locator.RegisterSingleton<INavigationService>(navigationService);
+            // MainWindow를 지연 초기화 싱글톤으로 등록
+            container.RegisterSingletonLazy<MainWindow>(() => new MainWindow());
 
-            // 뷰 키 등록 (순환 참조 방지)
-            //navigationService.RegisterView<LoginFormView>("LoginForm");
-            //navigationService.RegisterView<HomeView>("Home");
-            //navigationService.RegisterView<NavView>("Nav");
-            navigationService.RegisterView<HomePageView>("HomePage");
-            navigationService.RegisterView<AuthPageView>("AuthPage");
-            navigationService.RegisterView<SelfTestPageView>("SelfTestPage");
+            container.RegisterTransient<LoginFormViewModel>();
+            container.RegisterTransient<HomeViewModel>();
+            container.RegisterTransient<NavViewModel>();
+            container.RegisterTransient<AuthPageViewModel>();
+            container.RegisterTransient<HomePageViewModel>();
 
-            // ViewModels - Transient
-            locator.RegisterTransient(() =>
-                new LoginFormViewModel(locator.Resolve<INavigationService>()));
-            locator.RegisterTransient(() => new HomeViewModel(locator.Resolve<INavigationService>()));
-            locator.RegisterTransient(() => new NavViewModel(locator.Resolve<INavigationService>()));
-            locator.RegisterTransient(() => new SelfTestViewModel(locator.Resolve<INavigationService>()));
+            // 뷰들은 트랜지언트로 등록 (ModuleManager가 필요할 때 생성)
+            container.RegisterTransient<AuthPageView>();
+            container.RegisterTransient<HomePageView>();
+            container.RegisterTransient<LoginFormView>();
+            container.RegisterTransient<HomeView>();
+            container.RegisterTransient<NavView>();
+        }
 
-            locator.RegisterTransient(() => new AuthPageViewModel());
-            locator.RegisterTransient(() => new HomePageViewModel());
-            locator.RegisterTransient(() => new SelfTestPageViewModel());
+        /// <summary>
+        /// VinetelMvvm 방식: Page와 Module을 분리하여 등록
+        /// </summary>
+        protected virtual void RegisterModules()
+        {
+            // ==== MainRegion에 Page들 등록 ====
+            Manager.Register(Regions.MainRegion,
+                new Module(PageViews.AuthPageView, AuthPageViewModel.Create, typeof(AuthPageView)));
 
-            // Views - Transient
-            locator.RegisterTransient(() =>
-                new LoginFormView(locator.Resolve<LoginFormViewModel>()));
-            locator.RegisterTransient(() => new HomeView(locator.Resolve<HomeViewModel>()));
-            locator.RegisterTransient(() => new NavView(locator.Resolve<NavViewModel>()));
-            locator.RegisterTransient(() => new SelfTestView(locator.Resolve<SelfTestViewModel>()));
+            Manager.Register(Regions.MainRegion,
+                new Module(PageViews.HomePageView, HomePageViewModel.Create, typeof(HomePageView)));
 
-            locator.RegisterTransient(() => new HomePageView());
-            locator.RegisterTransient(() => new AuthPageView());
-            locator.RegisterTransient(() => new SelfTestPageView());
+            // ==== 각 Region에 실제 Module들 등록 ====
 
-            // MainWindow - Singleton
-            locator.RegisterSingleton(() =>
-                new MainWindow(locator.Resolve<INavigationService>()));
+            // AuthRegion에 LoginModule 등록
+            Manager.Register(Regions.AuthRegion,
+                new Module(Modules.LoginModule, LoginFormViewModel.Create, typeof(LoginFormView)));
+
+            // HomeRegion에 HomeModule 등록
+            Manager.Register(Regions.HomeRegion,
+                new Module(Modules.HomeModule, HomeViewModel.Create, typeof(HomeView)));
+
+            // NavRegion에 NavModule 등록
+            Manager.Register(Regions.NavRegion,
+                new Module(Modules.NavModule, NavViewModel.Create, typeof(NavView)));
+        }
+
+        /// <summary>
+        /// VinetelMvvm 방식: 각 Region에 Module 주입
+        /// </summary>
+        protected virtual void InjectModules()
+        {
+            // 1. MainRegion에 AuthPage 주입
+            Manager.Inject(Regions.MainRegion, PageViews.AuthPageView);
+
+            // 2. AuthRegion에 LoginModule 주입
+            Manager.Inject(Regions.AuthRegion, Modules.LoginModule);
         }
     }
 }

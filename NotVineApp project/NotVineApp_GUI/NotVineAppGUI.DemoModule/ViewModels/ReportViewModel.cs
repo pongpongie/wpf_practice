@@ -6,10 +6,10 @@ namespace NotVineAppGUI.DemoModule.ViewModels
     public class ReportViewModel : ViewModelBase
 
     {
-        private readonly INavigationService _navigationService;
-        public ReportViewModel(INavigationService navigationService)
+        
+        public ReportViewModel()
         {
-            _navigationService = navigationService;
+         
         }
     }
 }

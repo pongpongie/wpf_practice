@@ -1,18 +1,18 @@
-﻿using System.Windows.Controls;
-using NotVineAppGUI.RegionPageView.ViewModels;
+﻿using NotVineApp.Common.Settings;
 using NotVineApp.Common.Utils;
+using NotVineAppGUI.RegionPageView.ViewModels;
+using System.Windows.Controls;
 
 namespace NotVineAppGUI.RegionPageView.Views
 {
-    /// <summary>
-    /// AuthPageView.xaml에 대한 상호 작용 논리
-    /// </summary>
     public partial class AuthPageView : UserControl
     {
         public AuthPageView()
         {
             InitializeComponent();
-            this.DataContext = IoCContainer.Instance.Resolve<AuthPageViewModel>();
+
+            // Region 등록 (VinetelMvvm 방식)
+            ModuleManager.DefaultManager.RegisterRegion(Regions.AuthRegion, AuthRegion);
         }
     }
 }
