@@ -1,20 +1,12 @@
-﻿using NotVineAppGUI.NavModule.ViewModels;
-using NotVineApp.Common.Utils;
-
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 
 namespace NotVineAppGUI.NavModule.Views
 {
     public partial class NavView : UserControl
     {
-        public NavView(NavViewModel viewModel)
+        public NavView()
         {
             InitializeComponent();
-            this.DataContext = viewModel;
-        }
-
-        public NavView() : this(IoCContainer.Instance.Resolve<NavViewModel>())
-        {
         }
     }
 }

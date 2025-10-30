@@ -1,7 +1,5 @@
-﻿using NotVineAppGUI.LoginModule.ViewModels;
-using NotVineApp.Common.Utils;
-using NotVineApp.Common.Services;
-using System.Windows.Input;
+﻿using NotVineApp.Common.Utils;
+
 
 namespace NotVineAppGUI.RegionPageView.ViewModels
 {
@@ -9,7 +7,7 @@ namespace NotVineAppGUI.RegionPageView.ViewModels
     {
         public AuthPageViewModel()
         {
-            
+
         }
 
         public static AuthPageViewModel Create()

@@ -1,23 +1,14 @@
 ﻿<UserControl x:Class="NotVineAppGUI.RegionPageView.Views.SelfTestPageView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:SelfTestVM="clr-namespace:NotVineAppGUI.DemoModule.ViewModels;assembly=NotVineAppGUI.DemoModule"
-             xmlns:SelfTestView="clr-namespace:NotVineAppGUI.DemoModule.Views;assembly=NotVineAppGUI.DemoModule"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:NotVineAppGUI.RegionPageView.Views"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:navVM="clr-namespace:NotVineAppGUI.NavModule.ViewModels;assembly=NotVineAppGUI.NavModule"
-             xmlns:navView="clr-namespace:NotVineAppGUI.NavModule.Views;assembly=NotVineAppGUI.NavModule"
+             xmlns:settings="clr-namespace:NotVineApp.Common.Settings;assembly=NotVineApp.Common"
+             xmlns:utils="clr-namespace:NotVineApp.Common.Utils;assembly=NotVineApp.Common"
              mc:Ignorable="d">
 
     <UserControl.Resources>
-
-        <DataTemplate DataType="{x:Type SelfTestVM:SelfTestViewModel}">
-            <SelfTestView:SelfTestView />
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type navVM:NavViewModel}">
-            <navView:NavView />
-        </DataTemplate>
 
         <Style x:Key="SelfTestRegionStyle"
                TargetType="ContentControl">
@@ -48,13 +39,10 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <ContentControl x:Name="NavRegion"
-                        Grid.Row="0"
-                        Content="{Binding NavViewModel}" />
-        <ContentControl x:Name="SelfTestRegion"
-                        Grid.Row="1"
-                        Content="{Binding SelfTestViewModel}"
-                        Style="{StaticResource SelfTestRegionStyle}" />
+        <ContentControl Grid.Row="0"
+                        utils:RegionManager.RegionName="{x:Static settings:Regions.NavRegion}" />
+        <ContentControl Grid.Row="1"
+                        utils:RegionManager.RegionName="{x:Static settings:Regions.SelfTestRegion}" />
 
     </Grid>
 </UserControl>

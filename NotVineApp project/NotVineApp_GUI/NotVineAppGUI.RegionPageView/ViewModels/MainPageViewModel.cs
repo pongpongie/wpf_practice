@@ -9,19 +9,6 @@ namespace NotVineAppGUI.RegionPageView.ViewModels
 {
     public class MainPageViewModel : ViewModelBase
     {
-        private object _currentPageViewModel;
-        public object CurrentPageViewModel
-        {
-            get => _currentPageViewModel;
-            set
-            {
-                if (_currentPageViewModel != value)
-                {
-                    _currentPageViewModel = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
 
         public MainPageViewModel()
         {

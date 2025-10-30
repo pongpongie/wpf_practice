@@ -9,7 +9,6 @@ namespace NotVineAppGUI.RegionPageView.Views
         public SelfTestPageView()
         {
             InitializeComponent();
-            this.DataContext = IoCContainer.Instance.Resolve<SelfTestPageViewModel>();
         }
     }
 }

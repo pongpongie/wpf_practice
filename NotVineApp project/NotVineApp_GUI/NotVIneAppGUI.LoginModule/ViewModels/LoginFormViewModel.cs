@@ -1,5 +1,4 @@
 ﻿using NotVineApp.Common.Utils;
-using NotVineApp.Common.Services;
 using NotVineApp.Common.Settings;
 
 namespace NotVineAppGUI.LoginModule.ViewModels
@@ -26,7 +25,6 @@ namespace NotVineAppGUI.LoginModule.ViewModels
             ClickCommand = new RelayCommand(OnButtonClick);
         }
 
-        // Factory Method 추가
         public static LoginFormViewModel Create()
         {
             return new LoginFormViewModel();
@@ -40,7 +38,6 @@ namespace NotVineAppGUI.LoginModule.ViewModels
             if (ClickCommand != null)
             {
                 ModuleManager.DefaultManager.Inject(Regions.MainRegion, PageViews.HomePageView);
-                ModuleManager.DefaultManager.Inject(Regions.HomeRegion, Modules.HomeModule);
             }
         }
     }

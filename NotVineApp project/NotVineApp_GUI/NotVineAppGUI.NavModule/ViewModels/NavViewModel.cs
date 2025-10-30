@@ -1,5 +1,4 @@
 ﻿using NotVineApp.Common.Utils;
-using NotVineApp.Common.Services;
 using NotVineAppGUI.NavModule.Models;
 
 using System.Collections.ObjectModel;
@@ -9,7 +8,7 @@ namespace NotVineAppGUI.NavModule.ViewModels
 {
     public class NavViewModel : ViewModelBase
     {
-        
+
 
         public ICommand NavigateCommand { get; }
         public ICommand GoCommand { get; }
@@ -18,7 +17,7 @@ namespace NotVineAppGUI.NavModule.ViewModels
 
         public NavViewModel()
         {
-           
+
 
             Pages = new ObservableCollection<NavPageInfo>
             {
@@ -44,7 +43,7 @@ namespace NotVineAppGUI.NavModule.ViewModels
 
         private void Navigate(object parameter)
         {
-            
+
 
         }
     }

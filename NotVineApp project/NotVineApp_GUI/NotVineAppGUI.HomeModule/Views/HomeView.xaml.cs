@@ -1,23 +1,12 @@
-﻿using NotVineAppGUI.HomeModule.ViewModels;
-using System.Windows.Controls;
-using NotVineApp.Common.Utils;
-
+﻿using System.Windows.Controls;
 
 namespace NotVineAppGUI.HomeModule.Views
 {
-    /// <summary>
-    /// HomeView.xaml에 대한 상호 작용 논리
-    /// </summary>
     public partial class HomeView : UserControl
     {
-        public HomeView(HomeViewModel viewModel)
+        public HomeView()
         {
             InitializeComponent();
-            this.DataContext = viewModel;
-        }
-
-        public HomeView() : this(IoCContainer.Instance.Resolve<HomeViewModel>())
-        {
         }
     }
 }
