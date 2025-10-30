@@ -6,7 +6,7 @@
         public const string MainRegion = "MainRegion";
 
         // AuthPageView 내부 영역
-        public const string LoginFormRegion = "LoginFromRegion";
+        public const string LoginFormRegion = "LoginFormRegion";
 
         // HomePageView 내부 영역
         public const string HomeRegion = "HomeRegion";
