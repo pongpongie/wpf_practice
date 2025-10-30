@@ -7,6 +7,14 @@
              mc:Ignorable="d">
 
     <UserControl.Resources>
+
+        <SolidColorBrush x:Key="InputNormalBorderBrush"
+                         Color="#e5e7eb" />
+        <SolidColorBrush x:Key="InputHoverBorderBrush"
+                         Color="#00a6ec" />
+        <Color x:Key="InputNormalBorderColor">#E5E7EB</Color>
+        <Color x:Key="InputHoverBorderColor">#00A6EC</Color>
+
         <Style x:Key="BorderStyle"
                TargetType="Border">
             <Setter Property="MinHeight"
@@ -14,19 +22,48 @@
             <Setter Property="MinWidth"
                     Value="300" />
             <Setter Property="BorderBrush"
-                    Value="#023291" />
+                    Value="Transparent" />
             <Setter Property="BorderThickness"
                     Value="4" />
             <Setter Property="CornerRadius"
-                    Value="10" />
+                    Value="25" />
             <Setter Property="Background"
-                    Value="#001984" />
+                    Value="#ffffff" />
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect BlurRadius="20"
+                                      Opacity="1"
+                                      ShadowDepth="0"
+                                      Color="Black" />
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="MouseEnter">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="(Border.Effect).(DropShadowEffect.Opacity)"
+                                             To="0.5"
+                                             Duration="0:0:0.2" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+
+                <EventTrigger RoutedEvent="MouseLeave">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="(Border.Effect).(DropShadowEffect.Opacity)"
+                                             To="0"
+                                             Duration="0:0:0.2" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Style.Triggers>
         </Style>
 
         <Style x:Key="TextBlockStyle"
                TargetType="TextBlock">
             <Setter Property="Foreground"
-                    Value="White" />
+                    Value="Black" />
             <Setter Property="TextAlignment"
                     Value="left" />
             <Setter Property="VerticalAlignment"
@@ -46,7 +83,7 @@
             <Setter Property="Background"
                     Value="White" />
             <Setter Property="BorderBrush"
-                    Value="#023291" />
+                    Value="#e5e7eb" />
             <Setter Property="BorderThickness"
                     Value="2" />
             <Setter Property="CornerRadius"
@@ -57,15 +94,10 @@
                     Value="250" />
 
             <Style.Triggers>
-                <Trigger Property="IsMouseOver"
-                         Value="True">
-                    <Setter Property="BorderBrush"
-                            Value="#00a6ec" />
-                </Trigger>
                 <Trigger Property="IsKeyboardFocusWithin"
                          Value="True">
                     <Setter Property="BorderBrush"
-                            Value="#00a6ec" />
+                            Value="{StaticResource InputHoverBorderBrush}" />
                     <Setter Property="BorderThickness"
                             Value="3" />
                 </Trigger>
@@ -112,9 +144,36 @@
                     Value="2" />
         </Style>
 
+        <Style x:Key="AnimatedLoginButtonBorderStyle"
+               BasedOn="{StaticResource InputBorderStyle}"
+               TargetType="Border">
+
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="MouseEnter">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ColorAnimation Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
+                                            To="{StaticResource InputHoverBorderColor}"
+                                            Duration="0:0:0.2" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+
+                <EventTrigger RoutedEvent="MouseLeave">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ColorAnimation Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
+                                            To="{StaticResource InputNormalBorderColor}"
+                                            Duration="0:0:0.2" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Style.Triggers>
+        </Style>
     </UserControl.Resources>
 
-    <Border Style="{StaticResource BorderStyle}">
+    <Grid>
+        <Border Style="{StaticResource BorderStyle}" />
 
         <StackPanel>
 
@@ -124,7 +183,7 @@
                 <TextBlock VerticalAlignment="Center"
                            d:Text="로그인하세요 제발"
                            FontSize="20"
-                           Foreground="white"
+                           Foreground="Black"
                            Text="{Binding TextBoxText}"
                            TextAlignment="Center" />
             </Grid>
@@ -144,16 +203,46 @@
                              Style="{StaticResource LoginInputPasswordBoxStyle}" />
             </Border>
 
-            <Button Width="100"
-                    Height="30"
+            <Border Width="100"
                     Margin="0,30,0,0"
-                    VerticalAlignment="Center"
-                    Command="{Binding ClickCommand}"
-                    Content="로그인"
-                    Style="{StaticResource ButtonStyle}" />
+                    Style="{StaticResource AnimatedLoginButtonBorderStyle}">
+
+                <Button VerticalAlignment="Center"
+                        Background="Transparent"
+                        BorderBrush="Transparent"
+                        Command="{Binding ClickCommand}"
+                        Content="로그인">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border x:Name="border"
+                                    Background="Transparent"
+                                    BorderBrush="Transparent"
+                                    BorderThickness="1">
+                                <ContentPresenter Margin="{TemplateBinding Padding}"
+                                                  HorizontalAlignment="Center"
+                                                  VerticalAlignment="Center" />
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsPressed"
+                                         Value="True">
+                                    <Setter TargetName="border"
+                                            Property="Background"
+                                            Value="Transparent" />
+                                </Trigger>
+                                <Trigger Property="IsEnabled"
+                                         Value="False">
+                                    <Setter TargetName="border"
+                                            Property="Opacity"
+                                            Value="0.7" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </Border>
 
         </StackPanel>
+    </Grid>
 
-    </Border>
 
 </UserControl>
