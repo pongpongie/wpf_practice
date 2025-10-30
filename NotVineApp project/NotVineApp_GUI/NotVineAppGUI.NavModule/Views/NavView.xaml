@@ -8,11 +8,23 @@
 
     <UserControl.Resources>
         <utils:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+        <Color x:Key="PageButtonNormalBack">transparent</Color>
+        <Color x:Key="PageButtonNormalBorder">#023291</Color>
+        <Color x:Key="PageButtonHoverBack">#F0F5FD</Color>
+        <Color x:Key="PageButtonHoverBorder">#023291</Color>
+
+        <Color x:Key="ButtonNormalBack">OrangeRed</Color>
+        <Color x:Key="ButtonNormalBorder">orangeRed</Color>
+        <Color x:Key="ButtonHoverBack">red</Color>
+        <Color x:Key="ButtonHoverBorder">red</Color>
+
+
         <Style x:Key="StackPanelStyle"
                TargetType="StackPanel">
             <Setter Property="Orientation"
                     Value="Horizontal" />
         </Style>
+
         <Style x:Key="ButtonStyle"
                TargetType="Button">
             <Setter Property="Background"
@@ -21,10 +33,154 @@
                     Value="16" />
             <Setter Property="Foreground"
                     Value="White" />
+            <Setter Property="Margin"
+                    Value="5" />
+            <Setter Property="BorderThickness"
+                    Value="1" />
+            <Setter Property="FontSize"
+                    Value="13" />
+            <Setter Property="Padding"
+                    Value="8,5" />
+            <Setter Property="Cursor"
+                    Value="Hand" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="4">
+                            <ContentPresenter Margin="{TemplateBinding Padding}"
+                                              HorizontalAlignment="Center"
+                                              VerticalAlignment="Center" />
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+
+                            <EventTrigger RoutedEvent="MouseEnter">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="border"
+                                                        Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                        To="{StaticResource ButtonHoverBack}"
+                                                        Duration="0:0:0.2" />
+                                        <ColorAnimation Storyboard.TargetName="border"
+                                                        Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
+                                                        To="{StaticResource ButtonHoverBorder}"
+                                                        Duration="0:0:0.2" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+
+                            <EventTrigger RoutedEvent="MouseLeave">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="border"
+                                                        Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                        To="{StaticResource ButtonNormalBack}"
+                                                        Duration="0:0:0.2" />
+                                        <ColorAnimation Storyboard.TargetName="border"
+                                                        Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
+                                                        To="{StaticResource ButtonNormalBorder}"
+                                                        Duration="0:0:0.2" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+
+                            <Trigger Property="IsPressed"
+                                     Value="True">
+                                <Setter TargetName="border"
+                                        Property="Background"
+                                        Value="#E0EAFB" />
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
         </Style>
-        <Style x:Key="NavButtonStyle"
+
+
+        <Style x:Key="PageButtonStyle"
                TargetType="Button">
 
+            <Setter Property="Background"
+                    Value="transparent" />
+            <Setter Property="BorderBrush"
+                    Value="#023291" />
+            <Setter Property="Foreground"
+                    Value="#023291" />
+            <Setter Property="BorderThickness"
+                    Value="1" />
+            <Setter Property="FontSize"
+                    Value="15" />
+            <Setter Property="Padding"
+                    Value="8,5" />
+            <Setter Property="Cursor"
+                    Value="Hand" />
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="4">
+                            <ContentPresenter Margin="{TemplateBinding Padding}"
+                                              HorizontalAlignment="Center"
+                                              VerticalAlignment="Center" />
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+
+                            <EventTrigger RoutedEvent="MouseEnter">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="border"
+                                                        Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                        To="{StaticResource PageButtonHoverBack}"
+                                                        Duration="0:0:0.2" />
+                                        <ColorAnimation Storyboard.TargetName="border"
+                                                        Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
+                                                        To="{StaticResource PageButtonHoverBorder}"
+                                                        Duration="0:0:0.2" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+
+                            <EventTrigger RoutedEvent="MouseLeave">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="border"
+                                                        Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                        To="{StaticResource PageButtonNormalBack}"
+                                                        Duration="0:0:0.2" />
+                                        <ColorAnimation Storyboard.TargetName="border"
+                                                        Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
+                                                        To="{StaticResource PageButtonNormalBorder}"
+                                                        Duration="0:0:0.2" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+
+                            <Trigger Property="IsPressed"
+                                     Value="True">
+                                <Setter TargetName="border"
+                                        Property="Background"
+                                        Value="#E0EAFB" />
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="NavButtonStyle"
+               TargetType="Button">
             <Setter Property="HorizontalAlignment"
                     Value="Center" />
             <Setter Property="Background"
@@ -33,7 +189,6 @@
                     Value="White" />
             <Setter Property="FontSize"
                     Value="15" />
-
         </Style>
     </UserControl.Resources>
 
@@ -54,10 +209,11 @@
 
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Button Command="{Binding DataContext.NavigateCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                    <Button Margin="5"
+                            Command="{Binding DataContext.NavigateCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
                             CommandParameter="{Binding PageKey}"
                             Content="{Binding Title}"
-                            Style="{StaticResource ButtonStyle}"
+                            Style="{StaticResource PageButtonStyle}"
                             Visibility="{Binding IsVisible, Converter={StaticResource BoolToVisibilityConverter}}" />
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
