@@ -33,6 +33,7 @@
         {
             _transients[typeof(TService)] = () =>
             {
+                // 싱글톤 인스턴스가 없는 경우에만 팩토리를 통해 생성
                 if (!_singletons.ContainsKey(typeof(TService)))
                 {
                     _singletons[typeof(TService)] = factory();
