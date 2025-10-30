@@ -10,11 +10,6 @@ namespace NotVineAppGUI.RegionPageView.Views
         public HomePageView()
         {
             InitializeComponent();
-            this.DataContext = IoCContainer.Instance.Resolve<HomePageViewModel>();
-
-            // Region들 등록 (VinetelMvvm 방식)
-            ModuleManager.DefaultManager.RegisterRegion(Regions.HomeRegion, HomeRegion);
-            ModuleManager.DefaultManager.RegisterRegion(Regions.NavRegion, NavRegion);
         }
     }
 }

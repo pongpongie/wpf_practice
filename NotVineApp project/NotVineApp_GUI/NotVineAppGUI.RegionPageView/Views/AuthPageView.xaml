@@ -3,15 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:settings="clr-namespace:NotVineApp.Common.Settings;assembly=NotVineApp.Common"
+             xmlns:utils="clr-namespace:NotVineApp.Common.Utils;assembly=NotVineApp.Common"
              xmlns:view="clr-namespace:NotVineAppGUI.LoginModule.Views;assembly=NotVineAppGUI.LoginModule"
              xmlns:vm="clr-namespace:NotVineAppGUI.LoginModule.ViewModels;assembly=NotVineAppGUI.LoginModule"
              mc:Ignorable="d">
 
     <UserControl.Resources>
-        <!--<DataTemplate DataType="{x:Type vm:LoginFormViewModel}">
-            <view:LoginFormView />
-        </DataTemplate>-->
-
         <Style x:Key="BackgroundGridStyle"
                TargetType="Grid">
             <Setter Property="Background">
@@ -34,14 +32,13 @@
         </Style>
 
     </UserControl.Resources>
-    <ContentControl x:Name="AuthRegion">
-        <Grid Style="{StaticResource BackgroundGridStyle}">
-            <ContentControl x:Name="LoginFormRegion"
-                            Grid.Row="0"
-                            Content="{Binding CurrentViewModel}"
-                            Style="{StaticResource LoginFormRegionStyle}" />
 
-        </Grid>
-    </ContentControl>
+    <Grid Style="{StaticResource BackgroundGridStyle}">
+        <ContentControl Grid.Row="0"
+                        utils:RegionManager.RegionName="{x:Static settings:Regions.LoginFormRegion}"
+                        Style="{StaticResource LoginFormRegionStyle}" />
+
+    </Grid>
+
 
 </UserControl>

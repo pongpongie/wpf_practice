@@ -52,9 +52,6 @@ namespace NotVineApp
             container.RegisterTransient<NavView>();
         }
 
-        /// <summary>
-        /// VinetelMvvm 방식: Page와 Module을 분리하여 등록
-        /// </summary>
         protected virtual void RegisterModules()
         {
             // ==== MainRegion에 Page들 등록 ====
@@ -66,29 +63,27 @@ namespace NotVineApp
 
             // ==== 각 Region에 실제 Module들 등록 ====
 
-            // AuthRegion에 LoginModule 등록
-            Manager.Register(Regions.AuthRegion,
-                new Module(Modules.LoginModule, LoginFormViewModel.Create, typeof(LoginFormView)));
+            // LoginFormRegion
+            Manager.Register(Regions.LoginFormRegion,
+                new Module(Modules.LoginFormModule, LoginFormViewModel.Create, typeof(LoginFormView)));
 
-            // HomeRegion에 HomeModule 등록
+            // HomeRegion
             Manager.Register(Regions.HomeRegion,
                 new Module(Modules.HomeModule, HomeViewModel.Create, typeof(HomeView)));
 
-            // NavRegion에 NavModule 등록
+            // NavRegion
             Manager.Register(Regions.NavRegion,
                 new Module(Modules.NavModule, NavViewModel.Create, typeof(NavView)));
         }
 
-        /// <summary>
-        /// VinetelMvvm 방식: 각 Region에 Module 주입
-        /// </summary>
         protected virtual void InjectModules()
         {
-            // 1. MainRegion에 AuthPage 주입
-            Manager.Inject(Regions.MainRegion, PageViews.AuthPageView);
 
-            // 2. AuthRegion에 LoginModule 주입
-            Manager.Inject(Regions.AuthRegion, Modules.LoginModule);
+            Manager.Inject(Regions.LoginFormRegion, Modules.LoginFormModule);
+            Manager.Inject(Regions.NavRegion, Modules.NavModule);
+            Manager.Inject(Regions.HomeRegion, Modules.HomeModule);
+
+            Manager.Inject(Regions.MainRegion, PageViews.AuthPageView);
         }
     }
 }

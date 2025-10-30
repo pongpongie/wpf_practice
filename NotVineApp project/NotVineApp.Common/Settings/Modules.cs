@@ -3,7 +3,7 @@
     public static class Modules
     {
         // Auth 관련
-        public const string LoginModule = "LoginModule";
+        public const string LoginFormModule = "LoginFormModule";
 
         // Home 관련
         public const string HomeModule = "HomeModule";

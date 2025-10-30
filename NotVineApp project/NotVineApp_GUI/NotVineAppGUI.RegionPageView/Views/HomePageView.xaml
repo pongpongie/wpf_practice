@@ -2,22 +2,13 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:homeVM="clr-namespace:NotVineAppGUI.HomeModule.ViewModels;assembly=NotVineAppGUI.HomeModule"
-             xmlns:homeView="clr-namespace:NotVineAppGUI.HomeModule.Views;assembly=NotVineAppGUI.HomeModule"
              xmlns:local="clr-namespace:NotVineAppGUI.RegionPageView.Views"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:navVM="clr-namespace:NotVineAppGUI.NavModule.ViewModels;assembly=NotVineAppGUI.NavModule"
-             xmlns:navView="clr-namespace:NotVineAppGUI.NavModule.Views;assembly=NotVineAppGUI.NavModule"
+             xmlns:settings="clr-namespace:NotVineApp.Common.Settings;assembly=NotVineApp.Common"
+             xmlns:utils="clr-namespace:NotVineApp.Common.Utils;assembly=NotVineApp.Common"
              mc:Ignorable="d">
 
     <UserControl.Resources>
-
-        <DataTemplate DataType="{x:Type homeVM:HomeViewModel}">
-            <homeView:HomeView />
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type navVM:NavViewModel}">
-            <navView:NavView />
-        </DataTemplate>
 
         <Style x:Key="HomeRegionStyle"
                TargetType="ContentControl">
@@ -48,13 +39,10 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <ContentControl x:Name="NavRegion"
-                        Grid.Row="0"
-                        Content="{Binding NavViewModel}" />
-        <ContentControl x:Name="HomeRegion"
-                        Grid.Row="1"
-                        Content="{Binding HomeViewModel}"
-                        Style="{StaticResource HomeRegionStyle}" />
+        <ContentControl Grid.Row="0"
+                        utils:RegionManager.RegionName="{x:Static settings:Regions.NavRegion}" />
+        <ContentControl Grid.Row="1"
+                        utils:RegionManager.RegionName="{x:Static settings:Regions.HomeRegion}" />
 
     </Grid>
 </UserControl>

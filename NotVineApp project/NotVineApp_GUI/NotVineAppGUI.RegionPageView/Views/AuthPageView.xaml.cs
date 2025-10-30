@@ -10,9 +10,6 @@ namespace NotVineAppGUI.RegionPageView.Views
         public AuthPageView()
         {
             InitializeComponent();
-
-            // Region 등록 (VinetelMvvm 방식)
-            ModuleManager.DefaultManager.RegisterRegion(Regions.AuthRegion, AuthRegion);
         }
     }
 }

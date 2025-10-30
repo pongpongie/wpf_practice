@@ -1,88 +1,81 @@
-﻿using NotVineApp.Common.Services;
-using System.Reflection;
-using System.Windows;
+﻿using NotVineApp.Common.Utils;
 using System.Windows.Controls;
 
 namespace NotVineApp.Common.Utils
 {
+
     public class ModuleManager
     {
-        private static ModuleManager _defaultManager;
-        public static ModuleManager DefaultManager => _defaultManager ??= new ModuleManager();
+        private static readonly Lazy<ModuleManager> _lazy = new(() => new ModuleManager());
+        public static ModuleManager DefaultManager => _lazy.Value;
 
-        private readonly Dictionary<string, List<Module>> _regionModules = new();
-        private readonly Dictionary<string, ContentControl> _regions = new();
-        private readonly IoCContainer _container;
-        
+        private readonly Dictionary<string, List<Module>> _moduleRegistry = [];
+        private readonly Dictionary<string, ContentControl> _regions = [];
+        private readonly Dictionary<string, List<string>> _pendingInjections = [];
 
-        public ModuleManager()
+        private ModuleManager() { }
+
+        public void Register(string regionName, Module module)
         {
-            _container = IoCContainer.Instance;
-            
-        }
-
-        // Region 컨트롤 등록
-        public void RegisterRegion(string regionKey, ContentControl contentControl)
-        {
-            _regions[regionKey] = contentControl;
-        }
-
-        // Region에 Module 등록
-        public void Register(string regionKey, Module module)
-        {
-            if (!_regionModules.ContainsKey(regionKey))
+            if (!_moduleRegistry.TryGetValue(regionName, out var modules))
             {
-                _regionModules[regionKey] = new List<Module>();
+                modules = [];
+                _moduleRegistry[regionName] = modules;
             }
+            modules.Add(module);
+        }
 
-            _regionModules[regionKey].Add(module);
+        public void RegisterRegion(string regionName, ContentControl regionHost)
+        {
+            if (_regions.ContainsKey(regionName)) return;
 
-            // Container에 ViewModel 등록
-            _container.RegisterTransient(module.ViewModelFactory);
+            _regions.Add(regionName, regionHost);
+            // Region이 등록되었으므로, 이 Region을 기다리던 보류된 주입 요청을 실행합니다.
+            ProcessPendingInjections(regionName);
+        }
 
-            // Container에 View 등록
-            _container.RegisterTransient(() =>
+        public void Inject(string regionName, string moduleName)
+        {
+            // Region이 이미 등록되어 있다면 즉시 주입합니다.
+            if (_regions.TryGetValue(regionName, out var regionHost))
             {
-                var view = Activator.CreateInstance(module.ViewType) as UserControl;
-                if (view != null)
+                PerformInjection(regionHost, regionName, moduleName);
+            }
+            else
+            {
+                // Region이 아직 없다면, 나중을 위해 주입 요청을 보류 목록에 추가합니다.
+                if (!_pendingInjections.TryGetValue(regionName, out var pending))
                 {
-                    view.DataContext = module.ViewModelFactory();
+                    pending = [];
+                    _pendingInjections[regionName] = pending;
                 }
-                return view;
-            });
+                pending.Add(moduleName);
+            }
         }
 
-        // Region에 Module 주입
-        public void Inject(string regionKey, string moduleKey)
+        private void ProcessPendingInjections(string regionName)
         {
-            if (!_regionModules.ContainsKey(regionKey))
+            if (_pendingInjections.TryGetValue(regionName, out var pendingModules) && _regions.TryGetValue(regionName, out var regionHost))
             {
-                throw new InvalidOperationException($"Region '{regionKey}' not found.");
-            }
-
-            var module = _regionModules[regionKey].FirstOrDefault(m => m.Key == moduleKey);
-            if (module == null)
-            {
-                throw new InvalidOperationException($"Module '{moduleKey}' not found in region '{regionKey}'.");
-            }
-
-            // Region이 등록되어 있으면 직접 주입
-            if (_regions.ContainsKey(regionKey))
-            {
-                var view = Activator.CreateInstance(module.ViewType) as UserControl;
-                if (view != null)
+                foreach (string moduleName in pendingModules)
                 {
-                    view.DataContext = module.ViewModelFactory();
-                    _regions[regionKey].Content = view;
+                    PerformInjection(regionHost, regionName, moduleName);
                 }
+                _pendingInjections.Remove(regionName);
             }
         }
 
-        public IEnumerable<Module> GetModules(string regionKey)
+        private void PerformInjection(ContentControl regionHost, string regionName, string moduleName)
         {
-            return _regionModules.ContainsKey(regionKey)
-                ? _regionModules[regionKey]
-                : Enumerable.Empty<Module>();
+            if (_moduleRegistry.TryGetValue(regionName, out var modules))
+            {
+                var moduleToInject = modules.FirstOrDefault(m => m.Key == moduleName);
+                if (moduleToInject != null)
+                {
+                    var view = IoCContainer.Instance.Resolve(moduleToInject.ViewType);
+                    regionHost.Content = view;
+                }
+            }
         }
     }
 }

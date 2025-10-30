@@ -1,15 +1,14 @@
 ﻿using NotVineApp.Common.Utils;
-using NotVineApp.Common.Services;
 
 namespace NotVineAppGUI.HomeModule.ViewModels
 {
     public class HomeViewModel : ViewModelBase
     {
-       
 
-        public HomeViewModel( )
+
+        public HomeViewModel()
         {
-            
+
         }
 
         // Factory Method 추가
