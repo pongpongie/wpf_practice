@@ -21,12 +21,15 @@
         <Style x:Key="BackgroundGridStyle"
                TargetType="Grid">
             <Setter Property="Background">
+
                 <Setter.Value>
-                    <LinearGradientBrush StartPoint="1,0" EndPoint="1,1">
+                    <ImageBrush ImageSource="/NotVineApp.Common;component/Images/Background.png" />
+                    <!--<LinearGradientBrush StartPoint="1,0" EndPoint="1,1">
                         <GradientStop Offset="0.0" Color="#00a6ec" />
-                        <GradientStop Offset="1.0" Color="white" />
-                    </LinearGradientBrush>
+                         <GradientStop Offset="1.0" Color="white" />
+                     </LinearGradientBrush>-->
                 </Setter.Value>
+
             </Setter>
         </Style>
 
