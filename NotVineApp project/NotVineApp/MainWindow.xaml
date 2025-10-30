@@ -1,6 +1,8 @@
 ﻿<Window x:Class="NotVineApp.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:settings="clr-namespace:NotVineApp.Common.Settings;assembly=NotVineApp.Common"
+        xmlns:utils="clr-namespace:NotVineApp.Common.Utils;assembly=NotVineApp.Common"
         Title="NotVine App"
         Width="1280"
         Height="720"
@@ -17,6 +19,6 @@
     </WindowChrome.WindowChrome>
 
     <Grid MouseDown="Border_MouseDown">
-        <ContentControl x:Name="MainRegion" />
+        <ContentControl utils:RegionManager.RegionName="{x:Static settings:Regions.MainRegion}" />
     </Grid>
 </Window>
