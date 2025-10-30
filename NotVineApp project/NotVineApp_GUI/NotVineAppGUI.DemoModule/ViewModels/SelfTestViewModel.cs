@@ -1,5 +1,4 @@
-﻿using NotVineApp.Common.Services;
-using NotVineApp.Common.Utils;
+﻿using NotVineApp.Common.Utils;
 
 namespace NotVineAppGUI.DemoModule.ViewModels
 {
@@ -8,7 +7,12 @@ namespace NotVineAppGUI.DemoModule.ViewModels
     {
         public SelfTestViewModel()
         {
-     
+
+        }
+
+        public static SelfTestViewModel Create()
+        {
+            return new SelfTestViewModel();
         }
     }
 }

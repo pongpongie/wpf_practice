@@ -6,6 +6,8 @@ using NotVineAppGUI.LoginModule.ViewModels;
 using NotVineAppGUI.LoginModule.Views;
 using NotVineAppGUI.NavModule.ViewModels;
 using NotVineAppGUI.NavModule.Views;
+using NotVineAppGUI.DemoModule.ViewModels;
+using NotVineAppGUI.DemoModule.Views;
 using NotVineAppGUI.RegionPageView.ViewModels;
 using NotVineAppGUI.RegionPageView.Views;
 using System.Windows;
@@ -38,18 +40,25 @@ namespace NotVineApp
             // MainWindow를 지연 초기화 싱글톤으로 등록
             container.RegisterSingletonLazy<MainWindow>(() => new MainWindow());
 
+            container.RegisterTransient<AuthPageViewModel>();
+            container.RegisterTransient<HomePageViewModel>();
+            container.RegisterTransient<SelfTestPageViewModel>();
+
             container.RegisterTransient<LoginFormViewModel>();
             container.RegisterTransient<HomeViewModel>();
             container.RegisterTransient<NavViewModel>();
-            container.RegisterTransient<AuthPageViewModel>();
-            container.RegisterTransient<HomePageViewModel>();
+            container.RegisterTransient<SelfTestViewModel>();
 
             // 뷰들은 트랜지언트로 등록 (ModuleManager가 필요할 때 생성)
             container.RegisterTransient<AuthPageView>();
             container.RegisterTransient<HomePageView>();
+            container.RegisterTransient<SelfTestPageView>();
+
             container.RegisterTransient<LoginFormView>();
             container.RegisterTransient<HomeView>();
             container.RegisterTransient<NavView>();
+            container.RegisterTransient<SelfTestView>();
+
         }
 
         protected virtual void RegisterModules()
@@ -60,6 +69,9 @@ namespace NotVineApp
 
             Manager.Register(Regions.MainRegion,
                 new Module(PageViews.HomePageView, HomePageViewModel.Create, typeof(HomePageView)));
+
+            Manager.Register(Regions.MainRegion,
+                new Module(PageViews.SelfTestPageView, SelfTestPageViewModel.Create, typeof(SelfTestPageView)));
 
             // ==== 각 Region에 실제 Module들 등록 ====
 
@@ -74,11 +86,15 @@ namespace NotVineApp
             // NavRegion
             Manager.Register(Regions.NavRegion,
                 new Module(Modules.NavModule, NavViewModel.Create, typeof(NavView)));
+
+            // SelfTestRegion
+            Manager.Register(Regions.SelfTestRegion,
+                new Module(Modules.SelfTestModule, SelfTestViewModel.Create, typeof(SelfTestView)));
         }
 
         protected virtual void InjectModules()
         {
-
+            Manager.Inject(Regions.SelfTestRegion, Modules.SelfTestModule);
             Manager.Inject(Regions.LoginFormRegion, Modules.LoginFormModule);
             Manager.Inject(Regions.NavRegion, Modules.NavModule);
             Manager.Inject(Regions.HomeRegion, Modules.HomeModule);

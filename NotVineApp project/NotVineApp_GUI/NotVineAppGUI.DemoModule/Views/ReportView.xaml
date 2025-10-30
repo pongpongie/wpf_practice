@@ -27,6 +27,7 @@
                     Value="30" />
         </Style>
     </UserControl.Resources>
+
     <Grid Style="{StaticResource TextGridStyle}">
         <TextBlock Style="{StaticResource TextStyle}"
                    Text="This is Report View" />

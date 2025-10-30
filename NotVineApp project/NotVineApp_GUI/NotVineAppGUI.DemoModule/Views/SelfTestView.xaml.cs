@@ -7,14 +7,9 @@ namespace NotVineAppGUI.DemoModule.Views
 {
     public partial class SelfTestView : UserControl
     {
-        public SelfTestView(SelfTestViewModel viewModel)
+        public SelfTestView()
         {
             InitializeComponent();
-            this.DataContext = viewModel;
-        }
-
-        public SelfTestView() : this(IoCContainer.Instance.Resolve<SelfTestViewModel>())
-        {
         }
     }
 }

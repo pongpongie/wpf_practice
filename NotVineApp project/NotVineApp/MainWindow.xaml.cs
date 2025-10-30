@@ -10,9 +10,6 @@ namespace NotVineApp
         public MainWindow()
         {
             InitializeComponent();
-
-            // ModuleManager에 MainRegion 등록만 수행
-            ModuleManager.DefaultManager.RegisterRegion(Regions.MainRegion, MainRegion);
         }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
