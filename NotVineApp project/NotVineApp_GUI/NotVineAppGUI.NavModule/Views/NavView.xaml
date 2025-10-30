@@ -24,10 +24,15 @@
         </Style>
         <Style x:Key="NavButtonStyle"
                TargetType="Button">
+
+            <Setter Property="HorizontalAlignment"
+                    Value="Center" />
             <Setter Property="Background"
                     Value="#023291" />
             <Setter Property="Foreground"
                     Value="White" />
+            <Setter Property="FontSize"
+                    Value="15" />
 
         </Style>
     </UserControl.Resources>
@@ -50,7 +55,7 @@
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <Button Command="{Binding DataContext.NavigateCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
-                            CommandParameter="{Binding}"
+                            CommandParameter="{Binding PageKey}"
                             Content="{Binding Title}"
                             Style="{StaticResource ButtonStyle}"
                             Visibility="{Binding IsVisible, Converter={StaticResource BoolToVisibilityConverter}}" />
@@ -71,14 +76,16 @@
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <Button Grid.Column="0"
+                        Padding="10,10"
                         Command="{Binding GoCommand}"
                         CommandParameter="Back"
-                        Content="&lt;"
+                        Content="◀"
                         Style="{StaticResource NavButtonStyle}" />
                 <Button Grid.Column="1"
+                        Padding="10,10"
                         Command="{Binding GoCommand}"
                         CommandParameter="Forward"
-                        Content="&gt;"
+                        Content="▶"
                         Style="{StaticResource NavButtonStyle}" />
             </Grid>
             <Button Grid.Column="1"

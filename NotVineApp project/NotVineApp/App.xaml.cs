@@ -40,6 +40,10 @@ namespace NotVineApp
             // MainWindow를 지연 초기화 싱글톤으로 등록
             container.RegisterSingletonLazy<MainWindow>(() => new MainWindow());
 
+            // NavViewModel과 NavView를 싱글톤으로 등록
+            container.RegisterSingleton<NavViewModel>(new NavViewModel());
+            container.RegisterSingleton<NavView>(new NavView());
+
             container.RegisterTransient<AuthPageViewModel>();
             container.RegisterTransient<HomePageViewModel>();
             container.RegisterTransient<SelfTestPageViewModel>();
@@ -48,7 +52,7 @@ namespace NotVineApp
 
             container.RegisterTransient<LoginFormViewModel>();
             container.RegisterTransient<HomeViewModel>();
-            container.RegisterTransient<NavViewModel>();
+            // container.RegisterTransient<NavViewModel>(); // 싱글톤으로 변경
             container.RegisterTransient<SelfTestViewModel>();
             container.RegisterTransient<UserViewModel>();
             container.RegisterTransient<ReportPageViewModel>();
@@ -62,7 +66,7 @@ namespace NotVineApp
 
             container.RegisterTransient<LoginFormView>();
             container.RegisterTransient<HomeView>();
-            container.RegisterTransient<NavView>();
+            // container.RegisterTransient<NavView>(); // 싱글톤으로 변경
             container.RegisterTransient<SelfTestView>();
             container.RegisterTransient<UserView>();
             container.RegisterTransient<ReportView>();
@@ -70,6 +74,8 @@ namespace NotVineApp
 
         protected virtual void RegisterModules()
         {
+            var container = IoCContainer.Instance;
+
             // ==== MainRegion에 Page들 등록 ====
             Manager.Register(Regions.MainRegion,
                 new Module(PageViews.AuthPageView, AuthPageViewModel.Create, typeof(AuthPageView)));
@@ -96,9 +102,9 @@ namespace NotVineApp
             Manager.Register(Regions.HomeRegion,
                 new Module(Modules.HomeModule, HomeViewModel.Create, typeof(HomeView)));
 
-            // NavRegion
+            // NavRegion (IoC 컨테이너에서 싱글톤 인스턴스를 가져오도록 수정)
             Manager.Register(Regions.NavRegion,
-                new Module(Modules.NavModule, NavViewModel.Create, typeof(NavView)));
+                new Module(Modules.NavModule, () => container.Resolve<NavViewModel>(), typeof(NavView)));
 
             // SelfTestRegion
             Manager.Register(Regions.SelfTestRegion,
