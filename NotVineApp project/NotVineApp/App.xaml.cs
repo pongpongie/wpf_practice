@@ -43,22 +43,29 @@ namespace NotVineApp
             container.RegisterTransient<AuthPageViewModel>();
             container.RegisterTransient<HomePageViewModel>();
             container.RegisterTransient<SelfTestPageViewModel>();
+            container.RegisterTransient<UserPageViewModel>();
+            container.RegisterTransient<ReportPageViewModel>();
 
             container.RegisterTransient<LoginFormViewModel>();
             container.RegisterTransient<HomeViewModel>();
             container.RegisterTransient<NavViewModel>();
             container.RegisterTransient<SelfTestViewModel>();
+            container.RegisterTransient<UserViewModel>();
+            container.RegisterTransient<ReportPageViewModel>();
 
             // 뷰들은 트랜지언트로 등록 (ModuleManager가 필요할 때 생성)
             container.RegisterTransient<AuthPageView>();
             container.RegisterTransient<HomePageView>();
             container.RegisterTransient<SelfTestPageView>();
+            container.RegisterTransient<UserPageView>();
+            container.RegisterTransient<ReportPageView>();
 
             container.RegisterTransient<LoginFormView>();
             container.RegisterTransient<HomeView>();
             container.RegisterTransient<NavView>();
             container.RegisterTransient<SelfTestView>();
-
+            container.RegisterTransient<UserView>();
+            container.RegisterTransient<ReportView>();
         }
 
         protected virtual void RegisterModules()
@@ -72,6 +79,12 @@ namespace NotVineApp
 
             Manager.Register(Regions.MainRegion,
                 new Module(PageViews.SelfTestPageView, SelfTestPageViewModel.Create, typeof(SelfTestPageView)));
+
+            Manager.Register(Regions.MainRegion,
+                new Module(PageViews.ReportPageView, ReportViewModel.Create, typeof(ReportPageView)));
+
+            Manager.Register(Regions.MainRegion,
+                new Module(PageViews.UserPageView, UserViewModel.Create, typeof(UserPageView)));
 
             // ==== 각 Region에 실제 Module들 등록 ====
 
@@ -90,6 +103,14 @@ namespace NotVineApp
             // SelfTestRegion
             Manager.Register(Regions.SelfTestRegion,
                 new Module(Modules.SelfTestModule, SelfTestViewModel.Create, typeof(SelfTestView)));
+
+            // UserRegion
+            Manager.Register(Regions.UserRegion,
+                new Module(Modules.UserModule, UserViewModel.Create, typeof(UserView)));
+
+            // ReportRegion
+            Manager.Register(Regions.ReportRegion,
+                new Module(Modules.ReportModule, ReportViewModel.Create, typeof(ReportView)));
         }
 
         protected virtual void InjectModules()
@@ -98,6 +119,8 @@ namespace NotVineApp
             Manager.Inject(Regions.LoginFormRegion, Modules.LoginFormModule);
             Manager.Inject(Regions.NavRegion, Modules.NavModule);
             Manager.Inject(Regions.HomeRegion, Modules.HomeModule);
+            Manager.Inject(Regions.ReportRegion, Modules.ReportModule);
+            Manager.Inject(Regions.UserRegion, Modules.UserModule);
 
             Manager.Inject(Regions.MainRegion, PageViews.AuthPageView);
         }

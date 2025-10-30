@@ -9,5 +9,10 @@ namespace NotVineAppGUI.DemoModule.ViewModels
         public UserViewModel()
         {
         }
+
+        public static UserViewModel Create()
+        {
+            return new UserViewModel();
+        }
     }
 }

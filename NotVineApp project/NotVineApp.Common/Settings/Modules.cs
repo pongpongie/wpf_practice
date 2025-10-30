@@ -9,7 +9,9 @@
         public const string HomeModule = "HomeModule";
         public const string NavModule = "NavModule";
 
-        // SelfTest 관련
+        // Demo Page
         public const string SelfTestModule = "SelfTestModule";
+        public const string UserModule = "UserModule";
+        public const string ReportModule = "ReportModule";
     }
 }

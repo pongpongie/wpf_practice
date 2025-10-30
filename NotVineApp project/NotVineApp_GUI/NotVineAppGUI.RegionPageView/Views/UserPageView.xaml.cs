@@ -2,9 +2,9 @@
 
 namespace NotVineAppGUI.RegionPageView.Views
 {
-    public partial class AuthPageView : UserControl
+    public partial class UserPageView : UserControl
     {
-        public AuthPageView()
+        public UserPageView()
         {
             InitializeComponent();
         }

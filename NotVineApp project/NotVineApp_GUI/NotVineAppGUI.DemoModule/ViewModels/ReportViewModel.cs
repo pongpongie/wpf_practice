@@ -10,5 +10,10 @@ namespace NotVineAppGUI.DemoModule.ViewModels
         {
 
         }
+
+        public static ReportViewModel Create()
+        {
+            return new ReportViewModel();
+        }
     }
 }

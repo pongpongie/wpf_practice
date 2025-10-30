@@ -14,5 +14,7 @@
 
         // 기타
         public const string SelfTestRegion = "SelfTestRegion";
+        public const string UserRegion = "UserRegion";
+        public const string ReportRegion = "ReportRegion";
     }
 }

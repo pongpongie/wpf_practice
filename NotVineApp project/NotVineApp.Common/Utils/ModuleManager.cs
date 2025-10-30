@@ -11,6 +11,8 @@ namespace NotVineApp.Common.Utils
         private readonly Dictionary<string, List<Module>> _moduleRegistry = [];
         private readonly Dictionary<string, ContentControl> _regions = [];
         private readonly Dictionary<string, List<string>> _pendingInjections = [];
+        // 각 Region에 마지막으로 주입된 모듈을 기억
+        private readonly Dictionary<string, string> _currentModuleByRegion = [];
 
         private ModuleManager() { }
 
@@ -26,10 +28,36 @@ namespace NotVineApp.Common.Utils
 
         public void RegisterRegion(string regionName, ContentControl regionHost)
         {
-            if (_regions.ContainsKey(regionName)) return;
+            // 기존 호스트와 동일하면 무시, 다르면 교체
+            if (_regions.TryGetValue(regionName, out var existingHost))
+            {
+                if (ReferenceEquals(existingHost, regionHost)) return;
+                _regions[regionName] = regionHost;
+            }
+            else
+            {
+                _regions.Add(regionName, regionHost);
+            }
 
-            _regions.Add(regionName, regionHost);
-            ProcessPendingInjections(regionName);
+            // 대기 중인 주입이 있으면 먼저 처리
+            if (_pendingInjections.ContainsKey(regionName))
+            {
+                ProcessPendingInjections(regionName);
+            }
+            else if (_currentModuleByRegion.TryGetValue(regionName, out var currentModule))
+            {
+                // 마지막 모듈을 새 호스트에 재주입
+                PerformInjection(regionHost, regionName, currentModule);
+            }
+        }
+
+        public void UnregisterRegion(string regionName, ContentControl regionHost)
+        {
+            if (_regions.TryGetValue(regionName, out var existing) && ReferenceEquals(existing, regionHost))
+            {
+                _regions.Remove(regionName);
+                // _currentModuleByRegion 는 유지(다음에 같은 regionName이 다시 뜨면 재주입)
+            }
         }
 
         public void Inject(string regionName, string moduleName)
@@ -47,6 +75,9 @@ namespace NotVineApp.Common.Utils
                 }
                 pending.Add(moduleName);
             }
+
+            // 마지막 모듈 기록
+            _currentModuleByRegion[regionName] = moduleName;
         }
 
         private void ProcessPendingInjections(string regionName)
@@ -79,6 +110,9 @@ namespace NotVineApp.Common.Utils
                             view.DataContext = vm;
                         }
                         regionHost.Content = view;
+
+                        // 마지막 모듈 갱신
+                        _currentModuleByRegion[regionName] = moduleName;
                     }
                 }
             }

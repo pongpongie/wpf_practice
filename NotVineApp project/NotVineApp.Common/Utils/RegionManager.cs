@@ -24,20 +24,30 @@ namespace NotVineApp.Common.Utils
 
         private static void OnRegionNameChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (d is ContentControl regionHost && e.NewValue is string regionName)
+            if (d is not ContentControl regionHost) return;
+
+            // 이전 RegionName 해제
+            if (e.OldValue is string oldName && !string.IsNullOrEmpty(oldName))
             {
-                if (!string.IsNullOrEmpty(regionName))
+                ModuleManager.DefaultManager.UnregisterRegion(oldName, regionHost);
+            }
+
+            if (e.NewValue is string regionName && !string.IsNullOrEmpty(regionName))
+            {
+                if (!regionHost.IsLoaded)
                 {
-                    // 컨트롤이 로드된 후에 등록하도록 보장합니다.
-                    if (!regionHost.IsLoaded)
-                    {
-                        regionHost.Loaded += (sender, args) => Register(regionName, regionHost);
-                    }
-                    else
-                    {
-                        Register(regionName, regionHost);
-                    }
+                    regionHost.Loaded += (sender, args) => Register(regionName, regionHost);
                 }
+                else
+                {
+                    Register(regionName, regionHost);
+                }
+
+                // Unloaded 시 언레지스터
+                regionHost.Unloaded += (sender, args) =>
+                {
+                    ModuleManager.DefaultManager.UnregisterRegion(regionName, regionHost);
+                };
             }
         }
 

@@ -15,4 +15,10 @@
     <ProjectReference Include="..\NotVineAppGUI.NavModule\NotVineAppGUI.NavModule.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Views\ReportPageView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
 </Project>
