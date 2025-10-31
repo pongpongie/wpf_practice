@@ -189,6 +189,64 @@
                     Value="White" />
             <Setter Property="FontSize"
                     Value="15" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border"
+                                Margin="5"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="4">
+                            <ContentPresenter Margin="{TemplateBinding Padding}"
+                                              HorizontalAlignment="Center"
+                                              VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+
+                            <EventTrigger RoutedEvent="MouseEnter">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="border"
+                                                        Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                        To="{StaticResource PageButtonHoverBack}"
+                                                        Duration="0:0:0" />
+                                        <ColorAnimation Storyboard.TargetName="border"
+                                                        Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
+                                                        To="{StaticResource PageButtonHoverBorder}"
+                                                        Duration="0:0:0" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+
+                            <EventTrigger RoutedEvent="MouseLeave">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="border"
+                                                        Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                        To="#023291"
+                                                        Duration="0:0:0" />
+                                        <ColorAnimation Storyboard.TargetName="border"
+                                                        Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
+                                                        To="{StaticResource PageButtonNormalBorder}"
+                                                        Duration="0:0:0" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+
+                            <Trigger Property="IsPressed"
+                                     Value="True">
+                                <Setter TargetName="border"
+                                        Property="Background"
+                                        Value="#E0EAFB" />
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+
+
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
     </UserControl.Resources>
 
@@ -247,12 +305,12 @@
             <Button Grid.Column="1"
                     Command="{Binding GoCommand}"
                     CommandParameter="Home"
-                    Content="Home"
+                    Content="&#8962;"
                     Style="{StaticResource ButtonStyle}" />
             <Button Grid.Column="2"
                     Command="{Binding GoCommand}"
                     CommandParameter="Exit"
-                    Content="X"
+                    Content="&#128473;"
                     Style="{StaticResource ButtonStyle}" />
 
         </Grid>
