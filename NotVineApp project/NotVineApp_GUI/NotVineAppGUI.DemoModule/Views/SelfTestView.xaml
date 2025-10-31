@@ -8,10 +8,6 @@
 
         <Style x:Key="TextGridStyle"
                TargetType="Grid">
-            <Setter Property="Width"
-                    Value="860" />
-            <Setter Property="Height"
-                    Value="540" />
             <Setter Property="Background"
                     Value="CadetBlue" />
         </Style>

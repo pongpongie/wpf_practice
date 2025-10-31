@@ -44,15 +44,19 @@ namespace NotVineApp
             container.RegisterSingleton<NavViewModel>(new NavViewModel());
             container.RegisterSingleton<NavView>(new NavView());
 
+            //container.RegisterTransient<NavView>();
+            //container.RegisterTransient<NavViewModel>();
+
             container.RegisterTransient<AuthPageViewModel>();
             container.RegisterTransient<HomePageViewModel>();
             container.RegisterTransient<SelfTestPageViewModel>();
             container.RegisterTransient<UserPageViewModel>();
             container.RegisterTransient<ReportPageViewModel>();
+            container.RegisterTransient<MultiPageViewModel>();
 
             container.RegisterTransient<LoginFormViewModel>();
             container.RegisterTransient<HomeViewModel>();
-            // container.RegisterTransient<NavViewModel>(); // 싱글톤으로 변경
+
             container.RegisterTransient<SelfTestViewModel>();
             container.RegisterTransient<UserViewModel>();
             container.RegisterTransient<ReportPageViewModel>();
@@ -63,10 +67,10 @@ namespace NotVineApp
             container.RegisterTransient<SelfTestPageView>();
             container.RegisterTransient<UserPageView>();
             container.RegisterTransient<ReportPageView>();
+            container.RegisterTransient<MultiPageView>();
 
             container.RegisterTransient<LoginFormView>();
             container.RegisterTransient<HomeView>();
-            // container.RegisterTransient<NavView>(); // 싱글톤으로 변경
             container.RegisterTransient<SelfTestView>();
             container.RegisterTransient<UserView>();
             container.RegisterTransient<ReportView>();
@@ -91,6 +95,9 @@ namespace NotVineApp
 
             Manager.Register(Regions.MainRegion,
                 new Module(PageViews.UserPageView, UserViewModel.Create, typeof(UserPageView)));
+
+            Manager.Register(Regions.MainRegion,
+                new Module(PageViews.MultiPageView, MultiPageViewModel.Create, typeof(MultiPageView)));
 
             // ==== 각 Region에 실제 Module들 등록 ====
 
@@ -128,6 +135,7 @@ namespace NotVineApp
             Manager.Inject(Regions.ReportRegion, Modules.ReportModule);
             Manager.Inject(Regions.UserRegion, Modules.UserModule);
 
+            // 초기 화면으로 AuthPageView 주입
             Manager.Inject(Regions.MainRegion, PageViews.AuthPageView);
         }
     }

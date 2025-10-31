@@ -33,6 +33,7 @@ namespace NotVineAppGUI.NavModule.ViewModels
                 new NavPageInfo { Title="자가 점검", PageKey=PageViews.SelfTestPageView, IsVisible=true},
                 new NavPageInfo { Title="유저 관리", PageKey=PageViews.UserPageView, IsVisible=true},
                 new NavPageInfo { Title="분석 보고서", PageKey=PageViews.ReportPageView, IsVisible=true},
+                new NavPageInfo { Title="멀티 뷰", PageKey=PageViews.MultiPageView, IsVisible=true},
 
             };
 
